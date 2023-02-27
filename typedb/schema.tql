@@ -1,0 +1,23 @@
+define
+    name sub attribute,
+        value string;
+        
+    parenthood sub relation,
+        relates parent,
+        relates child;
+        
+    childhood sub relation,
+        relates parent,
+        relates child;
+        
+    tree sub entity,
+        owns name,
+        plays parenthood:parent,
+        plays parenthood:child,
+        plays childhood:parent,
+        plays childhood:child;
+    
+    
+
+
+

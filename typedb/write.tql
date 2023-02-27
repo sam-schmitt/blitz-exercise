@@ -1,0 +1,6 @@
+insert $tree1 isa tree, has name "root"; 
+insert $tree2 isa tree, has name "child 1";
+match $parent isa tree, has name "root"; $child isa tree, has name "child 1"; insert $perenthood(parent: $parent, child: $child) isa parenthood;
+
+
+
