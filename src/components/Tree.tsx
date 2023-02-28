@@ -4,7 +4,7 @@ import generateRandomId from "@/lib/helper/makeId";
 import { Node, TreeNodeProps } from "@/lib/types";
 import TreeNode from "./TreeNode";
 
-export default function Tree(content: any, isIB: boolean) {
+export default function Tree({ content, isIB }: any) {
 	const [root, setRoot] = useState<Node>({
 		id: "root",
 		name: "Root Node",

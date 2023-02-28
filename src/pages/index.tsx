@@ -20,7 +20,7 @@ export default function Home(props: any) {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<main className=''>
-				<Tree isIB={false} root={root} content={{}} />
+				<Tree root={root} content={{}} />
 				<InterfaceBuilder />
 			</main>
 		</>
