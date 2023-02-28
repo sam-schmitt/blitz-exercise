@@ -2,6 +2,7 @@ export type Node = {
 	id: string;
 	name: string;
 	children: Array<Node>;
+	content: any;
 };
 
 export type TreeNodeProps = {
@@ -13,6 +14,5 @@ export type TreeNodeProps = {
 	moveAllChildrenToParent: any;
 	deleteAllChildren: any;
 	moveToRoot: any;
-	moveNodeToParent: any;
-	// moveNodeToParentId: any;
+	isIB?: boolean;
 };

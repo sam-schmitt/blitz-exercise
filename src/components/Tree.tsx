@@ -4,44 +4,16 @@ import generateRandomId from "@/lib/helper/makeId";
 import { Node, TreeNodeProps } from "@/lib/types";
 import TreeNode from "./TreeNode";
 
-export default function Tree() {
+export default function Tree(content: any, isIB: boolean) {
 	const [root, setRoot] = useState<Node>({
 		id: "root",
 		name: "Root Node",
 		children: [],
+		content,
 	});
-	function moveNodeToParent(node: Node, newParent: Node) {
-		setRoot((prevRoot) => {
-			const updatedRoot = { ...prevRoot };
 
-			// First, delete the node from its current parent's children array
-			const deleteNodeFromParent = (parentNode: Node) => {
-				parentNode.children = parentNode.children.filter(
-					(child) => child.id !== node.id
-				);
-				for (let child of parentNode.children) {
-					deleteNodeFromParent(child);
-				}
-			};
-			deleteNodeFromParent(updatedRoot);
-
-			// Next, add the node to the new parent's children array
-			const addNodeToParent = (parentNode: Node) => {
-				if (parentNode.id === newParent.id) {
-					parentNode.children.push(node);
-				} else {
-					for (let child of parentNode.children) {
-						addNodeToParent(child);
-					}
-				}
-			};
-			addNodeToParent(updatedRoot);
-
-			return updatedRoot;
-		});
-	}
-
-	function addChild(node: Node) {
+	// add child to the selected node
+	function addChild(node: Node, content: any) {
 		setRoot((prevRoot) => {
 			const updatedRoot = { ...prevRoot };
 			if (node.id === updatedRoot.id) {
@@ -50,6 +22,7 @@ export default function Tree() {
 					id: generateRandomId(10),
 					name: `Child ${updatedRoot.children.length + 1}`,
 					children: [],
+					content,
 				});
 			} else {
 				// find the node to add the child to in the tree
@@ -60,6 +33,7 @@ export default function Tree() {
 							id: generateRandomId(10),
 							name: `Child ${parentNode.children.length + 1}`,
 							children: [],
+							content,
 						});
 						return true;
 					} else {
@@ -78,6 +52,7 @@ export default function Tree() {
 		});
 	}
 
+	// delete the selected node
 	function deleteSelf(node: Node) {
 		setRoot((prevRoot) => {
 			const updatedRoot = { ...prevRoot };
@@ -124,6 +99,7 @@ export default function Tree() {
 		return parent.children.findIndex((child) => child.id === node.id);
 	}
 
+	// move node up to grandparent
 	function moveToGrandparent(node: Node) {
 		setRoot((prevRoot) => {
 			const updatedRoot = { ...prevRoot };
@@ -142,6 +118,7 @@ export default function Tree() {
 		});
 	}
 
+	// move all children of selected node up to grandparent
 	function moveAllChildrenToParent(node: Node) {
 		setRoot((prevRoot) => {
 			const updatedRoot = { ...prevRoot };
@@ -232,18 +209,22 @@ export default function Tree() {
 
 	return (
 		<div className='bg-white rounded-md shadow-lg m-5 p-5'>
+			<h1 className='text-3xl font-bold'>Tree Example</h1>
 			<button
-				className='text-white bg-slate-500 p-3 rounded-lg m-2'
+				className='text-white bg-slate-500 p-2 rounded-lg m-1'
 				onClick={() => console.log({ root })}
 			>
 				Log Tree
 			</button>
-			<button
-				className='text-white bg-slate-500 p-3 rounded-lg m-2'
-				onClick={() => addChild(root)}
-			>
-				Add Child to Root
-			</button>
+			{!isIB && (
+				<button
+					className='text-white bg-slate-500 p-2 rounded-lg m-1'
+					onClick={() => addChild(root, {})}
+				>
+					Add Child to Root
+				</button>
+			)}
+
 			<TreeNode
 				node={root}
 				index={0}
@@ -253,7 +234,7 @@ export default function Tree() {
 				moveAllChildrenToParent={moveAllChildrenToParent}
 				deleteAllChildren={deleteAllChildren}
 				moveToRoot={moveToRoot}
-				moveNodeToParent={moveNodeToParent}
+				isIB={isIB}
 			/>
 		</div>
 	);
