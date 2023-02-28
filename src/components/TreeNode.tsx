@@ -15,12 +15,11 @@ export default function TreeNode({
 		<div>
 			<>
 				<button
+					className='text-white bg-slate-500 p-1 rounded-lg m-1'
 					onClick={() => {
 						addChild(node);
 					}}
-				>
-					+
-				</button>
+				></button>
 				<button
 					onClick={() => {
 						deleteSelf(node);

@@ -231,10 +231,19 @@ export default function Tree() {
 	}
 
 	return (
-		<div>
-			<button onClick={() => console.log({ root })}>Log Tree</button>
-			<button onClick={() => addChild(root)}>Add Child to Root</button>
-
+		<div className='bg-white rounded-md shadow-lg m-5 p-5'>
+			<button
+				className='text-white bg-slate-500 p-3 rounded-lg m-2'
+				onClick={() => console.log({ root })}
+			>
+				Log Tree
+			</button>
+			<button
+				className='text-white bg-slate-500 p-3 rounded-lg m-2'
+				onClick={() => addChild(root)}
+			>
+				Add Child to Root
+			</button>
 			<TreeNode
 				node={root}
 				index={0}
@@ -245,7 +254,6 @@ export default function Tree() {
 				deleteAllChildren={deleteAllChildren}
 				moveToRoot={moveToRoot}
 				moveNodeToParent={moveNodeToParent}
-				// moveNodeToParentId={moveNodeToParentId}
 			/>
 		</div>
 	);
