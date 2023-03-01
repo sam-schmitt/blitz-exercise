@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Select() {
+export default function Select({ editContent }: any) {
 	const [label, setLabel] = useState("Name");
 
 	return (
@@ -26,6 +26,14 @@ export default function Select() {
 					required
 				/>
 			</form>
+			<button
+				onClick={() => {
+					editContent({ type: "select", label });
+				}}
+				className='  text-white bg-slate-500 p-2 rounded-lg m-1'
+			>
+				Save Content
+			</button>
 		</div>
 	);
 }

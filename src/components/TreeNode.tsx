@@ -1,4 +1,5 @@
 import { TreeNodeProps } from "@/lib/types";
+import { useState } from "react";
 import {
 	GrAdd,
 	GrCaretUp,
@@ -7,6 +8,7 @@ import {
 	GrTrash,
 	GrUpgrade,
 } from "react-icons/gr";
+import ContentController from "./ContentController";
 export default function TreeNode({
 	node,
 	index,
@@ -16,66 +18,67 @@ export default function TreeNode({
 	moveAllChildrenToParent,
 	deleteAllChildren,
 	moveToRoot,
-	isIB,
+	editContent,
+	contentController,
 }: TreeNodeProps) {
 	return (
 		<div className='bg-white rounded-md shadow-md m-5 p-2'>
 			<h3 className='text-lg font-bold flex flex-row items-center justify-between'>
 				{node.name} <p className=' text-sm font-extralight'>ID: {node.id}</p>
 			</h3>
-			{!isIB && (
-				<div className='flex flex-row'>
-					<button
-						className='p-1 rounded-lg m-1 border-2 flex flex-row items-center  text-sm'
-						onClick={() => {
-							addChild(node);
-						}}
-					>
-						<GrAdd /> Add Child
-					</button>
-					<button
-						className='p-1 rounded-lg m-1 border-2 flex flex-row items-center text-sm'
-						onClick={() => {
-							deleteSelf(node);
-						}}
-					>
-						<GrTrash /> Delete
-					</button>
-					<button
-						className='p-1 rounded-lg m-1 border-2 flex flex-row items-center text-sm'
-						onClick={() => {
-							moveToGrandparent(node);
-						}}
-					>
-						<GrUpgrade /> Move Up Node
-					</button>
-					<button
-						className='p-1 rounded-lg m-1 border-2 flex flex-row items-center text-sm'
-						onClick={() => {
-							moveAllChildrenToParent(node);
-						}}
-					>
-						<GrCaretUp /> Move Children Up Node
-					</button>
-					<button
-						className='p-1 rounded-lg m-1 border-2 flex flex-row items-center text-sm'
-						onClick={() => {
-							deleteAllChildren(node);
-						}}
-					>
-						<GrFormTrash /> Delete All Children
-					</button>
-					<button
-						className='p-1 rounded-lg m-1 border-2 flex flex-row items-center text-sm'
-						onClick={() => {
-							moveToRoot(node);
-						}}
-					>
-						<GrHome /> Move To Root
-					</button>
-				</div>
-			)}
-
+			<div className='flex flex-row'>
+				<button
+					className='p-1 rounded-lg m-1 border-2 flex flex-row items-center  text-sm'
+					onClick={() => {
+						addChild(node);
+					}}
+				>
+					<GrAdd /> Add Child
+				</button>
+				<button
+					className='p-1 rounded-lg m-1 border-2 flex flex-row items-center text-sm'
+					onClick={() => {
+						deleteSelf(node);
+					}}
+				>
+					<GrTrash /> Delete
+				</button>
+				<button
+					className='p-1 rounded-lg m-1 border-2 flex flex-row items-center text-sm'
+					onClick={() => {
+						moveToGrandparent(node);
+					}}
+				>
+					<GrUpgrade /> Move Up Node
+				</button>
+				<button
+					className='p-1 rounded-lg m-1 border-2 flex flex-row items-center text-sm'
+					onClick={() => {
+						moveAllChildrenToParent(node);
+					}}
+				>
+					<GrCaretUp /> Move Children Up Node
+				</button>
+				<button
+					className='p-1 rounded-lg m-1 border-2 flex flex-row items-center text-sm'
+					onClick={() => {
+						deleteAllChildren(node);
+					}}
+				>
+					<GrFormTrash /> Delete All Children
+				</button>
+				<button
+					className='p-1 rounded-lg m-1 border-2 flex flex-row items-center text-sm'
+					onClick={() => {
+						moveToRoot(node);
+					}}
+				>
+					<GrHome /> Move To Root
+				</button>
+			</div>
+			<ContentController
+				editContent={(content: any) => editContent(node, content)}
+			/>
 			<div>
 				{node.children.map(function (node, index) {
 					return (
@@ -87,6 +90,8 @@ export default function TreeNode({
 							moveToGrandparent={moveToGrandparent}
 							moveAllChildrenToParent={moveAllChildrenToParent}
 							deleteAllChildren={deleteAllChildren}
+							editContent={editContent}
+							contentController={contentController}
 							moveToRoot={moveToRoot}
 						/>
 					);

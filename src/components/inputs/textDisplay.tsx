@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function TextDisplay() {
+export default function TextDisplay({ editContent }: any) {
 	const [label, setLabel] = useState("Name");
 
 	return (
@@ -19,6 +19,14 @@ export default function TextDisplay() {
 			</form>
 			<i>Preview</i>
 			<p className='font-semibold'>{label}</p>
+			<button
+				onClick={() => {
+					editContent({ type: "text-display", label });
+				}}
+				className='  text-white bg-slate-500 p-2 rounded-lg m-1'
+			>
+				Save Content
+			</button>
 		</div>
 	);
 }

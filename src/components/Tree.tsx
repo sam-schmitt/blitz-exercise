@@ -4,12 +4,12 @@ import generateRandomId from "@/lib/helper/makeId";
 import { Node, TreeNodeProps } from "@/lib/types";
 import TreeNode from "./TreeNode";
 
-export default function Tree({ content, isIB }: any) {
+export default function Tree({ contentController }: any) {
 	const [root, setRoot] = useState<Node>({
 		id: "root",
 		name: "Root Node",
 		children: [],
-		content,
+		content: {},
 	});
 
 	// add child to the selected node
@@ -48,6 +48,29 @@ export default function Tree({ content, isIB }: any) {
 				};
 				findAndAddChild(updatedRoot);
 			}
+			return updatedRoot;
+		});
+	}
+
+	function editContent(node: Node, content: any) {
+		setRoot((prevRoot) => {
+			const updatedRoot = { ...prevRoot };
+			console.log("content: ", content);
+			const updateContent = (currentNode: Node) => {
+				if (currentNode.id === node.id) {
+					// update content of the node
+					currentNode.content = content;
+					return true;
+				}
+				for (let i = 0; i < currentNode.children.length; i++) {
+					const child = currentNode.children[i];
+					if (updateContent(child)) {
+						return true;
+					}
+				}
+				return false;
+			};
+			updateContent(updatedRoot);
 			return updatedRoot;
 		});
 	}
@@ -216,14 +239,12 @@ export default function Tree({ content, isIB }: any) {
 			>
 				Log Tree
 			</button>
-			{!isIB && (
-				<button
-					className='text-white bg-slate-500 p-2 rounded-lg m-1'
-					onClick={() => addChild(root, {})}
-				>
-					Add Child to Root
-				</button>
-			)}
+			<button
+				className='text-white bg-slate-500 p-2 rounded-lg m-1'
+				onClick={() => addChild(root, {})}
+			>
+				Add Child to Root
+			</button>
 
 			<TreeNode
 				node={root}
@@ -234,7 +255,8 @@ export default function Tree({ content, isIB }: any) {
 				moveAllChildrenToParent={moveAllChildrenToParent}
 				deleteAllChildren={deleteAllChildren}
 				moveToRoot={moveToRoot}
-				isIB={isIB}
+				editContent={editContent}
+				contentController={contentController}
 			/>
 		</div>
 	);

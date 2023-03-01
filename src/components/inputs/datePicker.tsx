@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function DatePicker() {
+export default function DatePicker({ editContent }: any) {
 	const [label, setLabel] = useState("Name");
 
 	return (
@@ -22,6 +22,14 @@ export default function DatePicker() {
 				<label className='block mb-2 text-sm font-medium'>{label}</label>
 				<input type='date' className='bg-slate-300 p-3 rounded-md' required />
 			</form>
+			<button
+				onClick={() => {
+					editContent({ type: "date-picker", label });
+				}}
+				className='  text-white bg-slate-500 p-2 rounded-lg m-1'
+			>
+				Save Content
+			</button>
 		</div>
 	);
 }

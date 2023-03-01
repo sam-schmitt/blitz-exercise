@@ -14,5 +14,6 @@ export type TreeNodeProps = {
 	moveAllChildrenToParent: any;
 	deleteAllChildren: any;
 	moveToRoot: any;
-	isIB?: boolean;
+	editContent: any;
+	contentController?: boolean;
 };

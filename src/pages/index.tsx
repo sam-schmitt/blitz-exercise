@@ -1,16 +1,8 @@
 import Head from "next/head";
-import Tree from "@/components/Tree";
-import InterfaceBuilder from "@/components/InterfaceBuilder";
-import { useState } from "react";
-import { Node } from "@/lib/types";
+import { useRouter } from "next/router";
+import Header from "@/core/header";
 
 export default function Home(props: any) {
-	const [root, setRoot] = useState<Node>({
-		id: "root",
-		name: "Root Node",
-		children: [],
-		content: {},
-	});
 	return (
 		<>
 			<Head>
@@ -20,8 +12,7 @@ export default function Home(props: any) {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<main className=''>
-				<Tree root={root} content={{}} />
-				<InterfaceBuilder />
+				<Header />
 			</main>
 		</>
 	);
