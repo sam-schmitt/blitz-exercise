@@ -12,7 +12,7 @@ export default function Home(props: any) {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<main className=''>
-				<Header />
+				<Header selected={"/"} />
 			</main>
 		</>
 	);

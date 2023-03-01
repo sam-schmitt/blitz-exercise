@@ -19,7 +19,7 @@ export default function TreePage() {
 
 	return (
 		<div>
-			<Header />
+			<Header selected={"/trees"} />
 			{/* <button onClick={newTree}>New Tree</button>
 			{trees.map(function (tree, index) {
 				return ;

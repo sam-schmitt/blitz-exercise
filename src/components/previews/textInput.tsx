@@ -1,19 +1,13 @@
-import { useState } from "react";
-
 export default function TextInput({ content }: any) {
 	return (
-		<div>
-			<form>
-				<label className='block mb-2 text-sm font-medium'>
-					{content.label}
-				</label>
-				<input
-					type='text'
-					className='bg-slate-300 p-3 rounded-md'
-					placeholder={content.placeholder}
-					required
-				/>
-			</form>
+		<div className='flex flex-col'>
+			<label className='text-sm font-medium'>{content.label}</label>
+			<input
+				type='text'
+				className='px-3 py-2 rounded-md bg-slate-300 mt-2'
+				placeholder={content.placeholder}
+				required
+			/>
 		</div>
 	);
 }

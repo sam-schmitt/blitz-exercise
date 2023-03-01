@@ -1,0 +1,20 @@
+define
+    id sub attribute,
+        value string;
+        
+    name sub attribute,
+        value string;
+        
+    child sub relation,
+        relates parent,
+        relates child;
+        
+    h sub relation,
+        relates owner,
+        relates attribute,
+        value string;
+        
+    e sub entity,
+        plays child:parent,
+        plays child:child;
+

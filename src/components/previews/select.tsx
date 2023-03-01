@@ -1,16 +1,12 @@
 export default function Select({ content }: any) {
 	return (
-		<div>
-			<form className='flex flex-row justify-between'>
-				<label className='block mb-2 text-sm font-medium'>
-					{content.label}
-				</label>
-				<input
-					type='checkbox'
-					className='bg-slate-300 p-3 rounded-md'
-					required
-				/>
-			</form>
+		<div className='flex justify-end items-center'>
+			<label className='text-sm font-medium mr-5'>{content.label}</label>
+			<input
+				type='checkbox'
+				className='px-3 py-2 rounded-md bg-slate-300 mt-2'
+				required
+			/>
 		</div>
 	);
 }

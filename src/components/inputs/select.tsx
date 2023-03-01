@@ -6,10 +6,12 @@ export default function Select({ editContent }: any) {
 	return (
 		<div>
 			<form>
-				<label className='block mb-2 text-sm font-medium'>Edit Label</label>
+				<label className='block mb-2 text-gray-600 text-sm font-medium'>
+					Edit Label
+				</label>
 				<input
 					type='text'
-					className='bg-slate-300 p-3 rounded-md'
+					className='w-full px-4 py-2 rounded-lg bg-gray-100 border border-gray-200 focus:outline-none focus:border-gray-400'
 					placeholder='What are they selecting?'
 					onChange={(e) => {
 						setLabel(e.target.value);
@@ -22,7 +24,7 @@ export default function Select({ editContent }: any) {
 				onClick={() => {
 					editContent({ type: "select", label });
 				}}
-				className='  text-white bg-slate-500 p-2 rounded-lg m-1'
+				className='mt-4 px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600'
 			>
 				Save Content
 			</button>

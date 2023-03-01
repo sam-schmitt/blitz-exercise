@@ -1,12 +1,12 @@
 export default function DatePicker({ content }: any) {
 	return (
-		<div>
-			<form className='flex flex-row justify-between'>
-				<label className='block mb-2 text-sm font-medium'>
-					{content.label}
-				</label>
-				<input type='date' className='bg-slate-300 p-3 rounded-md' required />
-			</form>
+		<div className='flex flex-col'>
+			<label className='text-sm font-medium'>{content.label}</label>
+			<input
+				type='date'
+				className='px-3 py-2 rounded-md bg-slate-300 mt-2'
+				required
+			/>
 		</div>
 	);
 }

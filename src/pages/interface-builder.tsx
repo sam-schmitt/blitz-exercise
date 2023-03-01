@@ -5,7 +5,7 @@ import Header from "@/core/header";
 export default function InterfaceBuilderPage() {
 	return (
 		<div>
-			<Header />
+			<Header selected={"/interface-builder"} />
 			<Tree ContentController={ContentController} />
 		</div>
 	);

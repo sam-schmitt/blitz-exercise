@@ -13,7 +13,17 @@ export default function Tree({ ContentController }: any) {
 		content: {},
 	});
 	const [previewing, setPreviewing] = useState<boolean>(false);
-
+	function assignNewIds(children: Node[]): Node[] {
+		return children.map((child) => {
+			const newChild = { ...child };
+			newChild.id = generateRandomId(10);
+			newChild.reference = child.id;
+			if (newChild.children) {
+				newChild.children = assignNewIds(newChild.children);
+			}
+			return newChild;
+		});
+	}
 	// add child to the selected node
 	function addChild(node: Node, content: any) {
 		setRoot((prevRoot) => {
@@ -27,10 +37,12 @@ export default function Tree({ ContentController }: any) {
 					content,
 				});
 			} else {
+				let parentOfAdded = root;
 				// find the node to add the child to in the tree
 				const findAndAddChild = (parentNode: Node): boolean => {
 					if (parentNode.id === node.id) {
 						// add child to parent node
+						parentOfAdded = parentNode;
 						parentNode.children.push({
 							id: generateRandomId(10),
 							name: `Child ${parentNode.children.length + 1}`,
@@ -49,6 +61,16 @@ export default function Tree({ ContentController }: any) {
 					}
 				};
 				findAndAddChild(updatedRoot);
+				const updateChildrenContent = (parentNode: Node) => {
+					for (let i = 0; i < parentNode.children.length; i++) {
+						const child = parentNode.children[i];
+						if (child.reference === parentOfAdded.id) {
+							child.children = assignNewIds(parentOfAdded.children);
+						}
+						updateChildrenContent(child);
+					}
+				};
+				updateChildrenContent(root);
 			}
 			return updatedRoot;
 		});
@@ -57,21 +79,37 @@ export default function Tree({ ContentController }: any) {
 	function editContent(node: Node, content: any) {
 		setRoot((prevRoot) => {
 			const updatedRoot = { ...prevRoot };
-			console.log("content: ", content);
+
 			const updateContent = (currentNode: Node) => {
 				if (currentNode.id === node.id) {
 					// update content of the node
 					currentNode.content = content;
+
+					// update content of children with matching reference
+					const updateChildrenContent = (parentNode: Node) => {
+						for (let i = 0; i < parentNode.children.length; i++) {
+							const child = parentNode.children[i];
+							if (child.reference === node.id) {
+								child.content = content;
+							}
+							updateChildrenContent(child);
+						}
+					};
+					updateChildrenContent(root);
+
 					return true;
 				}
+
 				for (let i = 0; i < currentNode.children.length; i++) {
 					const child = currentNode.children[i];
 					if (updateContent(child)) {
 						return true;
 					}
 				}
+
 				return false;
 			};
+
 			updateContent(updatedRoot);
 			return updatedRoot;
 		});
@@ -85,10 +123,12 @@ export default function Tree({ ContentController }: any) {
 				// can't delete root node
 				return updatedRoot;
 			} else {
+				let parentOfDeleted = root;
 				// find the parent node and delete the current node from its children array
 				const findAndDeleteSelf = (parentNode: Node): boolean => {
 					for (let i = 0; i < parentNode.children.length; i++) {
 						if (parentNode.children[i].id === node.id) {
+							parentOfDeleted = parentNode;
 							parentNode.children.splice(i, 1);
 							return true;
 						} else {
@@ -101,6 +141,16 @@ export default function Tree({ ContentController }: any) {
 					return false;
 				};
 				findAndDeleteSelf(updatedRoot);
+				const updateChildrenContent = (parentNode: Node) => {
+					for (let i = 0; i < parentNode.children.length; i++) {
+						const child = parentNode.children[i];
+						if (child.reference === parentOfDeleted.id) {
+							child.children = assignNewIds(parentOfDeleted.children);
+						}
+						updateChildrenContent(child);
+					}
+				};
+				updateChildrenContent(root);
 			}
 			return updatedRoot;
 		});
@@ -152,11 +202,17 @@ export default function Tree({ ContentController }: any) {
 			if (!parent) {
 				return updatedRoot; // If node is root or has no parent, do nothing
 			}
+			const nodeIndex = parent.children.indexOf(node);
+			if (nodeIndex === -1) {
+				return updatedRoot; // If node is not a child of parent, do nothing
+			}
 			// add all children of the selected node to the parent's children array
-			parent.children.splice(parent.children.indexOf(node), 1, ...children);
-
-			// remove the selected node from the parent's children array
-			parent.children.splice(parent.children.indexOf(node), 1);
+			parent.children.splice(
+				nodeIndex,
+				1,
+				...children,
+				...parent.children.slice(nodeIndex + 1)
+			);
 
 			return updatedRoot;
 		});
@@ -227,25 +283,84 @@ export default function Tree({ ContentController }: any) {
 
 			// Add the node as a child of the root node
 			updatedRoot.children.push(node);
-
+			deleteSelf(node);
 			return updatedRoot;
 		});
 	}
 
+	// move selected node up in its children array
+	function moveUp(node: Node) {
+		setRoot((prevRoot) => {
+			const updatedRoot = { ...prevRoot };
+			const parent = findParentNode(updatedRoot, node);
+			if (!parent) {
+				return updatedRoot; // If node is root or has no parent, do nothing
+			}
+			const index = nodeIndex(parent, node);
+			if (index === 0) {
+				return updatedRoot; // If node is first child, do nothing
+			}
+			// Swap node with node at previous position
+			parent.children.splice(index - 1, 0, node);
+			parent.children.splice(index + 1, 1);
+			return updatedRoot;
+		});
+	}
+
+	// move selected node down in its children array
+	function moveDown(node: Node) {
+		setRoot((prevRoot) => {
+			const updatedRoot = { ...prevRoot };
+			const parent = findParentNode(updatedRoot, node);
+			if (!parent) {
+				return updatedRoot; // If node is root or has no parent, do nothing
+			}
+			const index = nodeIndex(parent, node);
+			if (index === parent.children.length - 1) {
+				return updatedRoot; // If node is last child, do nothing
+			}
+			// Swap node with node at next position
+			parent.children.splice(index + 2, 0, node);
+			parent.children.splice(index, 1);
+			return updatedRoot;
+		});
+	}
+
+	function addChildFromReference(reference: Node) {
+		setRoot((prevRoot) => {
+			const updatedRoot = { ...prevRoot };
+			const findAndAddChild = (parentNode: Node): boolean => {
+				if (parentNode.id === reference.id) {
+					// add child to parent node
+					parentNode.children.push({
+						id: generateRandomId(10),
+						name: `Child ${parentNode.children.length + 1}`,
+						children: [],
+						content: parentNode.content,
+						reference: reference.id, // add a reference to the parent node
+					});
+					return true;
+				} else {
+					for (let child of parentNode.children) {
+						if (findAndAddChild(child)) {
+							return true;
+						}
+					}
+					return false;
+				}
+			};
+			findAndAddChild(updatedRoot);
+			return updatedRoot;
+		});
+	}
 	return (
-		<div className='bg-white rounded-md shadow-lg m-5 p-5'>
-			<h1 className='text-3xl font-bold'>Tree Example</h1>
+		<div className='bg-white rounded-md shadow-lg m-3 p-3'>
+			{/* <h1 className='text-3xl font-bold'>Tree Example</h1> */}
 			<button
 				className='text-white bg-slate-500 p-2 rounded-lg m-1'
 				onClick={() => console.log({ root })}
 			>
 				Log Tree
-			</button>
-			<button
-				className='text-white bg-slate-500 p-2 rounded-lg m-1'
-				onClick={() => addChild(root, {})}
-			>
-				Add Child to Root
 			</button>
 			<button
 				className='text-white bg-slate-500 p-2 rounded-lg m-1'
@@ -264,6 +379,9 @@ export default function Tree({ ContentController }: any) {
 					deleteAllChildren={deleteAllChildren}
 					moveToRoot={moveToRoot}
 					editContent={editContent}
+					moveUp={moveUp}
+					moveDown={moveDown}
+					addChildFromReference={addChildFromReference}
 					ContentController={ContentController}
 				/>
 			) : (

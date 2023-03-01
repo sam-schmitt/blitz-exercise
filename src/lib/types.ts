@@ -3,6 +3,7 @@ export type Node = {
 	name: string;
 	children: Array<Node>;
 	content: any;
+	reference?: string;
 };
 
 export type TreeNodeProps = {
@@ -15,5 +16,9 @@ export type TreeNodeProps = {
 	deleteAllChildren: any;
 	moveToRoot: any;
 	editContent: any;
+	moveUp: any;
+	moveDown: any;
+	addChildFromReference: any;
+
 	ContentController?: boolean;
 };

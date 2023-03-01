@@ -1,18 +1,18 @@
 import { useState } from "react";
 
-export default function DatePicker({ editContent }: any) {
-	const [label, setLabel] = useState("Birthday");
+export default function Page({ editContent }: any) {
+	const [label, setLabel] = useState("Page Name");
 
 	return (
 		<div>
 			<form>
 				<label className='block mb-2 text-gray-600 text-sm font-medium'>
-					Edit Label
+					Edit Page Name
 				</label>
 				<input
 					type='text'
 					className='w-full px-4 py-2 rounded-lg bg-gray-100 border border-gray-200 focus:outline-none focus:border-gray-400'
-					placeholder='What are they selecting?'
+					placeholder='What is this page called?'
 					onChange={(e) => {
 						setLabel(e.target.value);
 					}}
@@ -21,7 +21,7 @@ export default function DatePicker({ editContent }: any) {
 			</form>
 			<button
 				onClick={() => {
-					editContent({ type: "date-picker", label });
+					editContent({ type: "page", label });
 				}}
 				className='mt-4 px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600'
 			>
