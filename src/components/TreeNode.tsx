@@ -8,7 +8,7 @@ import {
 	GrTrash,
 	GrUpgrade,
 } from "react-icons/gr";
-import ContentController from "./ContentController";
+
 import PreviewController from "./PreviewController";
 export default function TreeNode({
 	node,
@@ -20,7 +20,7 @@ export default function TreeNode({
 	deleteAllChildren,
 	moveToRoot,
 	editContent,
-	contentController,
+	ContentController,
 }: TreeNodeProps) {
 	return (
 		<div className='bg-white rounded-md shadow-md m-5 p-2'>
@@ -77,9 +77,12 @@ export default function TreeNode({
 					<GrHome /> Move To Root
 				</button>
 			</div>
-			<ContentController
-				editContent={(content: any) => editContent(node, content)}
-			/>
+			{ContentController && (
+				// @ts-expect-error
+				<ContentController
+					editContent={(content: any) => editContent(node, content)}
+				/>
+			)}
 			{node.content && <PreviewController content={node.content} />}
 			<div>
 				{node.children.map(function (node, index) {
@@ -93,7 +96,7 @@ export default function TreeNode({
 							moveAllChildrenToParent={moveAllChildrenToParent}
 							deleteAllChildren={deleteAllChildren}
 							editContent={editContent}
-							contentController={contentController}
+							ContentController={ContentController}
 							moveToRoot={moveToRoot}
 						/>
 					);

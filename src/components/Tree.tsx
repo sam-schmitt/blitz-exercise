@@ -5,7 +5,7 @@ import { Node, TreeNodeProps } from "@/lib/types";
 import TreeNode from "./TreeNode";
 import PreviewTree from "./PreviewTree";
 
-export default function Tree({ contentController }: any) {
+export default function Tree({ ContentController }: any) {
 	const [root, setRoot] = useState<Node>({
 		id: "root",
 		name: "Root Node",
@@ -264,7 +264,7 @@ export default function Tree({ contentController }: any) {
 					deleteAllChildren={deleteAllChildren}
 					moveToRoot={moveToRoot}
 					editContent={editContent}
-					contentController={contentController}
+					ContentController={ContentController}
 				/>
 			) : (
 				<PreviewTree root={root} />
