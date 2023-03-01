@@ -3,6 +3,7 @@ import { useState } from "react";
 import generateRandomId from "@/lib/helper/makeId";
 import { Node, TreeNodeProps } from "@/lib/types";
 import TreeNode from "./TreeNode";
+import PreviewTree from "./PreviewTree";
 
 export default function Tree({ contentController }: any) {
 	const [root, setRoot] = useState<Node>({
@@ -11,6 +12,7 @@ export default function Tree({ contentController }: any) {
 		children: [],
 		content: {},
 	});
+	const [previewing, setPreviewing] = useState<boolean>(false);
 
 	// add child to the selected node
 	function addChild(node: Node, content: any) {
@@ -245,19 +247,28 @@ export default function Tree({ contentController }: any) {
 			>
 				Add Child to Root
 			</button>
-
-			<TreeNode
-				node={root}
-				index={0}
-				addChild={addChild}
-				deleteSelf={deleteSelf}
-				moveToGrandparent={moveToGrandparent}
-				moveAllChildrenToParent={moveAllChildrenToParent}
-				deleteAllChildren={deleteAllChildren}
-				moveToRoot={moveToRoot}
-				editContent={editContent}
-				contentController={contentController}
-			/>
+			<button
+				className='text-white bg-slate-500 p-2 rounded-lg m-1'
+				onClick={() => setPreviewing(!previewing)}
+			>
+				Toggle Preview
+			</button>
+			{!previewing ? (
+				<TreeNode
+					node={root}
+					index={0}
+					addChild={addChild}
+					deleteSelf={deleteSelf}
+					moveToGrandparent={moveToGrandparent}
+					moveAllChildrenToParent={moveAllChildrenToParent}
+					deleteAllChildren={deleteAllChildren}
+					moveToRoot={moveToRoot}
+					editContent={editContent}
+					contentController={contentController}
+				/>
+			) : (
+				<PreviewTree root={root} />
+			)}
 		</div>
 	);
 }

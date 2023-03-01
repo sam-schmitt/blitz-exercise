@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function DatePicker({ editContent }: any) {
-	const [label, setLabel] = useState("Name");
+	const [label, setLabel] = useState("Birthday");
 
 	return (
 		<div>
@@ -10,17 +10,12 @@ export default function DatePicker({ editContent }: any) {
 				<input
 					type='text'
 					className='bg-slate-300 p-3 rounded-md'
-					placeholder='Something formal...'
+					placeholder='What is this date for?'
 					onChange={(e) => {
 						setLabel(e.target.value);
 					}}
 					required
 				/>
-			</form>
-			<i>Preview</i>
-			<form className='flex flex-row justify-between'>
-				<label className='block mb-2 text-sm font-medium'>{label}</label>
-				<input type='date' className='bg-slate-300 p-3 rounded-md' required />
 			</form>
 			<button
 				onClick={() => {

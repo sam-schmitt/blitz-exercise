@@ -30,16 +30,7 @@ export default function TextInput({ editContent }: any) {
 					}}
 				/>
 			</form>
-			<i>Preview</i>
-			<form>
-				<label className='block mb-2 text-sm font-medium'>{label}</label>
-				<input
-					type='text'
-					className='bg-slate-300 p-3 rounded-md'
-					placeholder={placeholder}
-					required
-				/>
-			</form>
+
 			<button
 				onClick={() => {
 					editContent({ type: "text-input", placeholder, label });

@@ -9,6 +9,7 @@ import {
 	GrUpgrade,
 } from "react-icons/gr";
 import ContentController from "./ContentController";
+import PreviewController from "./PreviewController";
 export default function TreeNode({
 	node,
 	index,
@@ -79,6 +80,7 @@ export default function TreeNode({
 			<ContentController
 				editContent={(content: any) => editContent(node, content)}
 			/>
+			{node.content && <PreviewController content={node.content} />}
 			<div>
 				{node.children.map(function (node, index) {
 					return (

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function TextDisplay({ editContent }: any) {
-	const [label, setLabel] = useState("Name");
+	const [label, setLabel] = useState("Some Text");
 
 	return (
 		<div>
@@ -10,15 +10,13 @@ export default function TextDisplay({ editContent }: any) {
 				<input
 					type='text'
 					className='bg-slate-300 p-3 rounded-md'
-					placeholder='Something formal...'
+					placeholder='What is this for?'
 					onChange={(e) => {
 						setLabel(e.target.value);
 					}}
 					required
 				/>
 			</form>
-			<i>Preview</i>
-			<p className='font-semibold'>{label}</p>
 			<button
 				onClick={() => {
 					editContent({ type: "text-display", label });
