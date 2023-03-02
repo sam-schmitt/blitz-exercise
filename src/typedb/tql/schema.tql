@@ -1,24 +1,40 @@
 define
     name sub attribute,
         value string;
+    id sub attribute,
+        value string;
+    label sub attribute,
+        value string;
+    placeholder sub attribute,
+        value string;
+    content-type sub attribute,
+        value string;
         
     parenthood sub relation,
-        owns id @key,
         relates parent,
         relates child;
         
-    childhood sub relation,
-        owns id @key,
-        relates parent,
-        relates child;
+    reference sub relation,
+        relates referer,
+        relates referee;
+        
+    tree-content sub relation,
+        relates tree-owner,
+        relates content;   
+        
+    content sub entity,
+        owns label,
+        owns placeholder,
+        owns content-type;
+
         
     tree sub entity,
-        owns id @key,
+        owns id,
         owns name,
         plays parenthood:parent,
         plays parenthood:child,
-        plays childhood:parent,
-        plays childhood:child;
+        plays reference:referer,
+        plays reference:referer;
     
     
 

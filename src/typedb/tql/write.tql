@@ -1,3 +1,4 @@
 insert $tree1 isa tree, has name "root"; 
-insert $tree2 isa tree, has name "child 1";
-match $parent isa tree, has name "root"; $child isa tree, has name "child 1"; insert $perenthood(parent: $parent, child: $child) isa parenthood;
+insert $child1 isa tree, has name "child 1";
+match $parent isa tree, has name "root"; $child isa tree, has name "child 1"; insert $parenthood(parent: $parent, child: $child) isa parenthood;
+match $tree1content isa content, has label "Full Name", has content-type "text-input", has placeholder "John Doe"; $owner isa tree, has name "root"; insert $tree-content(tree-owner:$owner, content:$tree1content) isa tree-content;
