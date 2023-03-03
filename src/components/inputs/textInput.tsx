@@ -6,6 +6,7 @@ export default function TextInput({ editContent }: any) {
 
 	return (
 		<div>
+			<p className='text-lg text-center'>Creating Text Input</p>
 			<form>
 				<label className='block mb-2 text-gray-600 text-sm font-medium'>
 					Label

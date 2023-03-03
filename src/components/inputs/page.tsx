@@ -5,9 +5,10 @@ export default function Page({ editContent }: any) {
 
 	return (
 		<div>
+			<p className='text-lg text-center'>Creating Page</p>
 			<form>
 				<label className='block mb-2 text-gray-600 text-sm font-medium'>
-					Edit Page Name
+					Name
 				</label>
 				<input
 					type='text'

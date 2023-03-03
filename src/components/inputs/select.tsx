@@ -5,9 +5,11 @@ export default function Select({ editContent }: any) {
 
 	return (
 		<div>
+			<p className='text-lg text-center'>Creating Select</p>
+
 			<form>
 				<label className='block mb-2 text-gray-600 text-sm font-medium'>
-					Edit Label
+					Label
 				</label>
 				<input
 					type='text'

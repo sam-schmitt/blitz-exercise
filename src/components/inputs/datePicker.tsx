@@ -5,6 +5,8 @@ export default function DatePicker({ editContent }: any) {
 
 	return (
 		<div>
+			<p className='text-lg text-center'>Creating Date Picker</p>
+
 			<form>
 				<label className='block mb-2 text-gray-600 text-sm font-medium'>
 					Edit Label
@@ -12,7 +14,7 @@ export default function DatePicker({ editContent }: any) {
 				<input
 					type='text'
 					className='w-full px-4 py-2 rounded-lg bg-gray-100 border border-gray-200 focus:outline-none focus:border-gray-400'
-					placeholder='What are they selecting?'
+					placeholder='What is this date for?'
 					onChange={(e) => {
 						setLabel(e.target.value);
 					}}

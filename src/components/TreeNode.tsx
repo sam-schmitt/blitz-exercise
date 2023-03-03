@@ -5,8 +5,10 @@ import {
 	GrAdd,
 	GrCaretDown,
 	GrCaretUp,
+	GrClose,
 	GrFormTrash,
 	GrHome,
+	GrMoreVertical,
 	GrTrash,
 	GrUpgrade,
 } from "react-icons/gr";
@@ -25,18 +27,12 @@ export default function TreeNode({
 	moveUp,
 	moveDown,
 	addChildFromReference,
-
+	isRoot,
 	ContentController,
 }: TreeNodeProps) {
 	const [options, setOptions] = useState(false);
 
 	const buttons = [
-		{
-			title: "Add Child",
-			onClick: () => addChild(node),
-			icon: <GrAdd className='mr-2' />,
-			visible: !node.reference,
-		},
 		{
 			title: "Delete",
 			onClick: () => deleteSelf(node),
@@ -81,84 +77,139 @@ export default function TreeNode({
 		},
 		{
 			title: "Add Child From Reference",
-			onClick: () => addChildFromReference(node, {}),
+			onClick: () =>
+				addChildFromReference(node, {
+					type: "empty",
+				}),
 			icon: <GrAction className='mr-2' />,
 			visible: !node.reference,
 		},
 	];
-
+	const [editingContent, setEditingContent] = useState<boolean>(
+		node.content.type === "empty"
+	);
 	return (
 		<div className='bg-white rounded-md shadow-md m-5 p-2'>
-			<p className='mr-2 text-sm font-extralight'>ID: {node.id}</p>
-			{node.reference && (
-				<p className='mr-2 text-sm font-extralight'>Ref: {node.reference}</p>
-			)}
-
-			<div className='flex flex-row items-center justify-between'>
-				{node.content ? (
-					<PreviewController content={node.content} />
-				) : (
-					<i>No content yet..</i>
-				)}
-				<div className='flex flex-row items-center'>
-					<button
-						className='border-2 border-gray-200 bg-white text-gray-700 hover:border-slate-500 hover:bg-slate-500 hover:text-white px-4 py-2 rounded-md flex items-center justify-start space-x-2 text-xs'
-						onClick={() => setOptions(!options)}
-					>
-						{options ? "Hide" : "Show"} Options
-					</button>
-				</div>
-			</div>
-			{options && (
-				<div>
-					<div className='absolute mt-10 bg-white rounded-md shadow-md p-2 grid grid-cols-2 md:grid-cols-3 gap-4'>
-						{buttons.map(function (item, index) {
-							if (item.visible) {
-								return (
-									<button
-										key={index}
-										className='border-2 border-gray-200 bg-white text-gray-700 hover:border-slate-500 hover:bg-slate-500 hover:text-white px-4 py-2 rounded-md flex items-center justify-start space-x-2 text-xs'
-										onClick={() => {
-											item.onClick();
-											setOptions(false);
-										}}
-									>
-										{item.icon} {item.title}
-									</button>
-								);
-							} else {
-								return <></>;
-							}
-						})}
-					</div>
-				</div>
-			)}
-			{ContentController && (
-				// @ts-expect-error
-				<ContentController
-					editContent={(content: any) => editContent(node, content)}
-				/>
-			)}
+			{/* content */}
 			<div>
-				{node.children.map(function (node, index) {
-					return (
-						<TreeNode
-							node={node}
-							index={index}
-							addChild={addChild}
-							deleteSelf={deleteSelf}
-							moveToGrandparent={moveToGrandparent}
-							moveAllChildrenToParent={moveAllChildrenToParent}
-							deleteAllChildren={deleteAllChildren}
-							editContent={editContent}
-							moveUp={moveUp}
-							moveDown={moveDown}
-							addChildFromReference={addChildFromReference}
-							ContentController={ContentController}
-							moveToRoot={moveToRoot}
-						/>
-					);
-				})}
+				{/* header */}
+				<div className='flex flex-row justify-between'>
+					<div>
+						<p className='mr-2 text-sm font-extralight'>ID: {node.id}</p>
+						{node.reference && (
+							<p className='mr-2 text-sm font-extralight'>
+								Ref: {node.reference}
+							</p>
+						)}
+					</div>
+					{node.isRoot && (
+						<button
+							onClick={() => {
+								addChild(node, { type: "empty" });
+							}}
+							className='border-2 border-gray-200 bg-white text-gray-700 hover:border-slate-500 hover:bg-slate-500 hover:text-white px-4 py-2 rounded-md flex items-center justify-start space-x-2 text-xs'
+						>
+							Add Block
+						</button>
+					)}
+				</div>
+				<div className='flex flex-row items-center justify-between'></div>
+				{!node.isRoot && editingContent && (
+					// @ts-expect-error
+					<ContentController
+						editContent={(content: any) => editContent(node, content)}
+						node={node}
+						editingContent={editingContent}
+						setEditingContent={setEditingContent}
+						canPage={index <= 1}
+					/>
+				)}
+				{!editingContent && (
+					<>
+						<button
+							onClick={() => {
+								setEditingContent(true);
+							}}
+							className='border-2 border-gray-200 bg-white text-gray-700 hover:border-slate-500 hover:bg-slate-500 hover:text-white px-4 py-2 rounded-md flex items-center justify-start space-x-2 text-xs'
+						>
+							Edit
+						</button>
+						<PreviewController content={node.content} />
+					</>
+				)}
+
+				<div>
+					{node.children.map(function (node, index) {
+						return (
+							<TreeNode
+								node={node}
+								index={index + 1}
+								addChild={addChild}
+								deleteSelf={deleteSelf}
+								moveToGrandparent={moveToGrandparent}
+								moveAllChildrenToParent={moveAllChildrenToParent}
+								deleteAllChildren={deleteAllChildren}
+								editContent={editContent}
+								moveUp={moveUp}
+								moveDown={moveDown}
+								addChildFromReference={addChildFromReference}
+								ContentController={ContentController}
+								moveToRoot={moveToRoot}
+							/>
+						);
+					})}
+				</div>
+				{options && (
+					<div className='flex flex-row justify-end'>
+						<div className='absolute mt-10 bg-white rounded-md shadow-md p-2 grid grid-cols-2 md:grid-cols-3 gap-4'>
+							{buttons.map(function (item, index) {
+								if (item.visible) {
+									return (
+										<button
+											key={index}
+											className='border-2 border-gray-200 bg-white text-gray-700 hover:border-slate-500 hover:bg-slate-500 hover:text-white px-4 py-2 rounded-md flex items-center justify-start space-x-2 text-xs'
+											onClick={() => {
+												item.onClick();
+												setOptions(false);
+											}}
+										>
+											{item.icon} {item.title}
+										</button>
+									);
+								} else {
+									return <></>;
+								}
+							})}
+						</div>
+					</div>
+				)}
+				<div className='flex flex-row justify-between'>
+					<div className='opacity-0'>.</div>
+
+					{(node.content.type === "page" ||
+						node.content.type === "group" ||
+						node.isRoot) && (
+						<button
+							onClick={() => {
+								addChild(node, { type: "empty" });
+							}}
+							className='border-2 border-gray-200 bg-white text-gray-700 hover:border-slate-500 hover:bg-slate-500 hover:text-white px-4 py-2 rounded-md flex flex-row'
+						>
+							+
+						</button>
+					)}
+
+					{!node.isRoot && (
+						<div className='flex flex-row justify-end'>
+							<button
+								className='  text-gray-700 hover:text-gray px-4 py-2 rounded-md flex items-center justify-start space-x-2 text-xs'
+								onClick={() => setOptions(!options)}
+							>
+								{!options ? <GrMoreVertical /> : <GrClose />}
+							</button>
+						</div>
+					)}
+				</div>
 			</div>
 		</div>
 	);

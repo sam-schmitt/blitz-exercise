@@ -5,9 +5,11 @@ export default function Button({ editContent }: any) {
 
 	return (
 		<div>
+			<p className='text-lg text-center'>Creating Button</p>
+
 			<form>
 				<label className='block mb-2 text-gray-600 text-sm font-medium'>
-					Edit Button Label
+					Button Text
 				</label>
 				<input
 					type='text'

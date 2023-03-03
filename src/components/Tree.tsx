@@ -10,7 +10,10 @@ export default function Tree({ ContentController }: any) {
 		id: "root",
 		name: "Root Node",
 		children: [],
-		content: {},
+		content: {
+			type: "empty",
+		},
+		isRoot: true,
 	});
 	const [previewing, setPreviewing] = useState<boolean>(false);
 	function assignNewIds(children: Node[]): Node[] {
@@ -35,6 +38,7 @@ export default function Tree({ ContentController }: any) {
 					name: `Child ${updatedRoot.children.length + 1}`,
 					children: [],
 					content,
+					parent: node,
 				});
 			} else {
 				let parentOfAdded = root;
@@ -383,6 +387,7 @@ export default function Tree({ ContentController }: any) {
 					moveDown={moveDown}
 					addChildFromReference={addChildFromReference}
 					ContentController={ContentController}
+					isRoot={true}
 				/>
 			) : (
 				<PreviewTree root={root} />

@@ -1,5 +1,6 @@
 import Button from "./previews/button";
 import DatePicker from "./previews/datePicker";
+import Group from "./previews/group";
 import Page from "./previews/page";
 import Select from "./previews/select";
 import TextDisplay from "./previews/textDisplay";
@@ -13,6 +14,7 @@ export default function PreviewController({ content }: any) {
 			{content.type === "select" && <Select content={content} />}
 			{content.type === "button" && <Button content={content} />}
 			{content.type === "page" && <Page content={content} />}
+			{content.type === "group" && <Group content={content} />}
 		</>
 	);
 }

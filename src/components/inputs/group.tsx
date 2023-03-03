@@ -1,20 +1,19 @@
 import { useState } from "react";
 
-export default function TextDisplay({ editContent }: any) {
+export default function Group({ editContent }: any) {
 	const [label, setLabel] = useState("Some Text");
 
 	return (
 		<div>
-			<p className='text-lg text-center'>Creating Text</p>
-
+			<p className='text-lg text-center'>Creating Group</p>
 			<form>
 				<label className='block mb-2 text-gray-600 text-sm font-medium'>
-					Text
+					Name
 				</label>
 				<input
 					type='text'
 					className='w-full px-4 py-2 rounded-lg bg-gray-100 border border-gray-200 focus:outline-none focus:border-gray-400'
-					placeholder='Display some text...'
+					placeholder='Name your group...'
 					onChange={(e) => {
 						setLabel(e.target.value);
 					}}
@@ -23,7 +22,7 @@ export default function TextDisplay({ editContent }: any) {
 			</form>
 			<button
 				onClick={() => {
-					editContent({ type: "text-display", label });
+					editContent({ type: "group", label });
 				}}
 				className='mt-4 px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600'
 			>
