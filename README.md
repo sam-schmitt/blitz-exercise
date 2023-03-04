@@ -3,28 +3,10 @@
 This README contains:
 
 1. A link to a [demo](https://youtube.com/watch?v=9MaZ0NR4_QM&feature=shares)
-2. Screenshots of the site's components
-3. My notes on my experience
+2. My notes on my experience
+3. Instructions on installation
 
 ## [Demo](https://youtube.com/watch?v=9MaZ0NR4_QM&feature=shares)
-
-## Screenshots
-
-_Login Form Being Built with Interface Builder_
-
-!['Login Builder'](/assets/login-builder.png)
-
-_Preview of Built Login Form_
-
-!['Login Preview'](/assets/login-preview.png)
-
-_Referrer Group Component_
-
-!['Login Referrer'](/assets/referrer.png)
-
-_Referee Group Component_
-
-!['Login Referee'](/assets/referee.png)
 
 # My Notes
 
@@ -35,6 +17,10 @@ _Referee Group Component_
 My tree component has nodes that are connected to each other in a parent-child relationship. The tree is represented as a nested data structure, where each node is an object with an id, name, content, and children. The `root` object represents the top-level node of the tree, and it can have any number of child nodes.
 
 The tree supports several operations, as they were specified in the assignment: like adding a new child node to a selected parent node, editing a node's content, and deleting a node. I used the `useState()` hook to manage state and render updates. The code uses recursion to traverse the tree to find the selected node and to update the children's content when a parent node is deleted or when new children are added to a node. This tree data structure is used to represent hierarchical data structures like file systems, organization charts, and family trees, and the **interface builder**.
+
+_A screenshot of a tree with multiple nested children_
+
+!['Tree'](/assets/tree.png)
 
 Creating the tree was a bit complicated at first, as I wanted to use a single state variable to control the state of the entire tree, beginning with a root.
 
@@ -49,6 +35,14 @@ From there, I used the UI to visualize the tree and identify any issues that nee
 By examining the console logs and carefully stepping through the code, I was able to identify most of the issues and make some necessary fixes.
 
 I learned a lot about state and how it can be managed through a recursive tree. The `createReference` function was the most interesting problem to solve.
+
+_Referrer Group Component_
+
+!['Login Referrer'](/assets/referrer.png)
+
+_Referee Group Component_
+
+!['Login Referee'](/assets/referee.png)
 
 #### What more would I do?
 
@@ -84,9 +78,15 @@ This feedback brought me to implement the drag and drop methods using dndkit and
 
 !['Options'](/assets/options.png)
 
-There are still a few bugs to work through, but nothing a few more casual days of debugging wouldn't fix.
+There are still a few bugs to work through, but nothing a few more casual days of debugging wouldn't fix. One thing that was great to add is the ability to see a preview of your interface as it is being built.
 
-The concept of a no-code UI interface builder is right there.
+_Login Form Being Built with Interface Builder_
+
+!['Login Builder'](/assets/login-builder.png)
+
+_Preview of Built Login Form_
+
+!['Login Preview'](/assets/login-preview.png)
 
 #### What more would I do?
 
@@ -143,7 +143,7 @@ Feel free after assessing this submission to check out my [portfolio](https://sa
 - `start`: starts the application in production mode
 - `lint`: runs ESLint to check for linting errors
 
-To run a script, open a terminal and navigate to the project directory. Then run npm run [script name], where [script name] is the name of the script you want to run.
+To run a script, open a terminal and navigate to the project directory. Then run `npm run [script name]`, where _[script name]_ is the name of the script you want to run.
 
 ## Dependencies
 
