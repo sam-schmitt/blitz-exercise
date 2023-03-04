@@ -21,21 +21,21 @@ export const id: DataField = {
 
 export const label: DataField = {
 	shared: true,
-	path: "name",
+	path: "label",
 	cardinality: "ONE",
 	contentType: "TEXT",
 };
 
 export const placeholder: DataField = {
 	shared: true,
-	path: "name",
+	path: "placeholder",
 	cardinality: "ONE",
 	contentType: "TEXT",
 };
 
 export const contentType: DataField = {
 	shared: true,
-	path: "name",
+	path: "contentType",
 	cardinality: "ONE",
 	contentType: "TEXT",
 };
@@ -77,9 +77,9 @@ export const schema: BormSchema = {
 				},
 				{
 					path: "content",
-					relation: "tree-content",
+					relation: "nodeContent",
 					cardinality: "ONE",
-					plays: "tree-owner",
+					plays: "owner",
 					target: "relation",
 				},
 			],
@@ -98,8 +98,8 @@ export const schema: BormSchema = {
 			],
 			linkFields: [
 				{
-					path: "tree-contents",
-					relation: "tree-content",
+					path: "node-contents",
+					relation: "nodeContent",
 					cardinality: "ONE",
 					plays: "content",
 					target: "relation",
@@ -136,13 +136,13 @@ export const schema: BormSchema = {
 				},
 			},
 		},
-		treeContent: {
+		nodeContent: {
 			idFields: ["id"],
-			defaultDBConnector: { id: "default", path: "tree-content" },
+			defaultDBConnector: { id: "default", path: "node-content" },
 			// defaultDBConnector: { id: 'tdb', path: 'User·Account' }, //todo: when Dbpath != relation name
 			dataFields: [{ ...id }],
 			roles: {
-				treeOwner: {
+				nodeOwner: {
 					cardinality: "ONE",
 				},
 				content: {

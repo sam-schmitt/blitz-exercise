@@ -18,8 +18,8 @@ define
         relates referer,
         relates referee;
         
-    treeContent sub relation,
-        relates treeOwner,
+    nodeContent sub relation,
+        relates owner,
         relates content;   
         
     content sub entity,
@@ -28,7 +28,7 @@ define
         owns contentType;
 
         
-    tree sub entity,
+    node sub entity,
         owns id,
         owns name,
         plays parenthood:parent,
