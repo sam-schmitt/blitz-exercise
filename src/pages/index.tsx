@@ -23,18 +23,17 @@ export default function Home(props: any) {
 					<p className='text-2xl font-bold mt-7'>The Tree</p>
 					<p className='text-xl mt-5'>Creating the Tree</p>
 					<p className='text-lg mt-2'>
-						My tree component has nodes that are connected to each other in a{" "}
-						<i>parent-child</i> relationship. The tree is represented as a
-						nested data structure, where each node is an object with an id,
-						name, content, and children. The <b>'root'</b> object represents the
-						top-level node of the tree, and it can have any number of child
-						nodes.
+						My tree component has nodes that are connected to each other in a
+						parent-child relationship. The tree is represented as a nested data
+						structure, where each node is an object with an id, name, content,
+						and children. The `root` object represents the top-level node of the
+						tree, and it can have any number of child nodes.
 					</p>
 					<p className='text-lg mt-2'>
 						The tree supports several operations, as they were specified in the
 						assignment: like adding a new child node to a selected parent node,
 						editing a node's content, and deleting a node. I used the{" "}
-						<code>`useState'</code>hook to manage state and render updates. The
+						<code>useState()</code> hook to manage state and render updates. The
 						code uses recursion to traverse the tree to find the selected node
 						and to update the children's content when a parent node is deleted
 						or when new children are added to a node. This tree data structure
@@ -48,7 +47,7 @@ export default function Home(props: any) {
 						beginning with a root.
 					</p>
 					<p className='text-lg mt-2'>
-						Once I began the <code>`addChild`</code> function, then I began to
+						Once I began the <code>addChild</code> function, then I began to
 						figure out how I was going to relate each node and pursue most of
 						the movement functions.
 					</p>
@@ -56,12 +55,12 @@ export default function Home(props: any) {
 					<p className='text-lg mt-2'>
 						As I was coding the tree in React, I decided to test it using both
 						the console and the UI. I began by logging the tree structure to the
-						console and verifying that it matched my expectations.{" "}
+						console and verifying that it matched my expectations.
 					</p>
 					<p className='text-lg mt-2'>
 						From there, I used the UI to visualize the tree and identify any
 						issues that needed fixing. As I interacted with the tree in the UI,
-						I noticed that some of the nodes were not behaving as expected.{" "}
+						I noticed that some of the nodes were not behaving as expected.
 					</p>
 					<p className='text-lg mt-2'>
 						By examining the console logs and carefully stepping through the
@@ -163,7 +162,17 @@ export default function Home(props: any) {
 						into it. I was impressed by its marketing use-cases and saw why it
 						would be a good fit for an exercise like this. I started to play
 						with TypeDB studio to get a better grasp on how the data could be
-						related.
+						related. I wrote out and defined the schema for the Tree and it
+						includes entities for the trees and content, relations between
+						parent nodes and their children, relations between references and
+						trees, and relations between nodes and their content. I then
+						proceeded to sketch out the schema based on the JSON that my root
+						state outputted from the client. I knew that linking to a DB would
+						increase performance of the tree significantly, as you wouldn't need
+						the entire state of the tree to exist on the client, only the
+						visible nodes. So I designed the schema so that you would only ever
+						need to make requests to smaller pieces of the root tree, and you
+						could request the full tree as you went and expanded.
 					</p>
 					<p className='text-lg mt-2'>
 						I then proceeded to sketch out the schema based on the JSON that my
@@ -186,7 +195,8 @@ export default function Home(props: any) {
 					<p className='text-lg mt-2'>
 						I would be very interested in taking a peak into a backend that is
 						already using Blitz Orm to its fullest capabilities, so that I could
-						see how well it can fit into a stack.
+						see how well it can fit into a stack. I did take a crack at the
+						schema for Blitz Orm and it is based off of the library's syntax.
 					</p>
 					<p className='text-xl mt-5'>What more would I do?</p>
 					<p className='text-lg mt-2'>
