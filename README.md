@@ -72,7 +72,7 @@ This feedback brought me to implement the drag and drop methods using dndkit and
 
 !['Options'](/assets/options.png)
 
-There are still a few bugs to work through, but nothing a few more casual days of debugging wouldn't fix. One thing that was great to add is the ability to see a [preview](/src/components/PreviewController.tsx) of your interface as it is being built.
+There are still a few bugs to work through, but nothing a few more casual days of debugging wouldn't fix. One thing that was great to add is the ability to see a _preview_ of your interface as it is being built.
 
 _Login Form Being Built with Interface Builder_
 
@@ -98,47 +98,48 @@ In terms of UX there are a ton of edge cases unaccounted for in functionality. F
 
 ### Learning TypeDB
 
-I've never used **TypeDB** before but that didn't stop me from reading into it. I was impressed by its marketing use-cases and saw why it would be a good fit for an exercise like this. I started to play with **TypeDB studio** to get a better grasp on how the data could be related. I wrote out and defined the schema for the Tree and it includes:
+I've never used **TypeDB** before but that didn't stop me from reading into it. I was impressed by its use-cases and saw why it would be a good fit for an exercise like this. I started to play with **TypeDB studio** to get a better grasp on how the data could be related. Then, I wrote out and defined the schema for the Tree and it includes:
 
 - Attributes to be owned by entities and relations
-- Entities for the trees and content
+- Entities for the tree node and content
 - Relations between parent nodes and their children
-- Relations between references and trees
+- Relations between reference nodes and their referrer
 - Relations between nodes and their content
 
-I then proceeded to sketch out the schema based on the JSON that my root state outputted from the client. I knew that linking to a DB would increase performance of the tree significantly, as you wouldn't need the entire state of the tree to exist on the client, only the visible nodes. So I designed the [schema](/src/typedb/tql/schema.tql) so that you would only ever need to make requests to smaller pieces of the root tree, and you could request the full tree as you went and expanded.
+I then proceeded to sketch out the schema based on the JSON that my root state outputted from the client. I knew that linking to a DB would increase performance of the tree significantly, as you wouldn't need the entire state of the tree to exist on the client, only the visible nodes. So I designed the [schema](/src/typedb/tql/schema.tql) so that you would only ever need to make requests to smaller pieces of the root tree, and you could request the full tree as you went on and expanded.
 
 ### Trying Blitz Orm
 
 I'm not going to lie, trying out **Blitz Orm** was a bit difficult but I could see the potential of the new package. Since it is in an early stage, I still made a good attempt to try and get it functional, however, I did experience some compatibility issues with other packages and decided to focus on other aspects of the assignment to better dedicate my time.
 
-I would be very interested in taking a peak into a backend that is already using **Blitz Orm** to its fullest capabilities, so that I could see how well it can fit into a stack. I did take a crack at the [schema](/src/typedb/schema.ts) for **Blitz Orm** and it is based off of the library's syntax.
+I would be very interested in taking a peak into a project that is already using **Blitz Orm** to its fullest capabilities, so that I could see how well it can fit into a stack. I did take a crack at the [schema](/src/typedb/schema.ts) for **Blitz Orm** and it is based off of the library's syntax.
 
 ### What more would I do for the backend?
 
-I definitely want to do more research on **TypeDB** and **TQL** to just satisfy my curiosity, it seems like a very neat DB solution. As for **Blitz Orm**, it would make the best sense to learn from the developer how it should be applied best, if I'd be given the opportunity to do so.
+I definitely want to do more research on **TypeDB** and **TQL** just to satisfy my curiosity, as it seems like a very neat DB solution. As for **Blitz Orm**, it would make the best sense to learn from the developers how it should be applied best, if I'd be given the opportunity to do so.
 
-As state in the assignment details, it is difficult to link JSON to **TypeDB**, so I would try different formatting on the client to better fit with **TQL**.
+As stated in the assignment details, it is difficult to link JSON to **TypeDB**, so I would try different formatting on the client to better fit with **TQL**.
 
 ## Final Thoughts
 
-As stated in my brief application (prior to this exercise), **I am very interested in building no-code solutions** as I've been a part of an entrepreneurial community that has always waited for the day that we could build out all of our ideas without needing to focus on so much code work.
+As stated in my brief application (prior to this exercise), **I am very interested in building no-code solutions** as I've been a part of an entrepreneurial community at my university that has always waited for the day that we could build out all of our ideas without needing to focus so much on code work.
 
-> > This exercise was a lot of fun for me, and I would love to continue to work on this problem alongside a strong team of developers, bringing in a polished UX and backend that could serve a distinguished no-code solution to many developers.
+> > This exercise was a lot of fun for me, and I would love to continue to work on this problem alongside a strong team of developers, bringing in a polished UX and backend that could serve a distinguished no-code solution to many more developers in years to come.
 
 Feel free, after assessing this submission, to check out my [portfolio](https://samschmitt.net).
 
 ## Installation
 
-### To install this package, please follow these steps
+### To run this project, please follow these steps
 
 1. Clone this repository
 2. Open a terminal and navigate to the project directory
 3. Run `npm install` to install all the necessary dependencies
+4. Then run `npm run dev` in your terminal in the console to start the project on your local host
 
 ## Usage
 
-### This package contains the following scripts
+### This project contains the following scripts
 
 - `dev`: runs the application in development mode
 - `build`: builds the application for production
@@ -149,7 +150,7 @@ To run a script, open a terminal and navigate to the project directory. Then run
 
 ## Dependencies
 
-### This package has the following dependencies
+### This project has the following dependencies
 
 - @blitznocode/blitz-orm: Blitz ORM
 - @dnd-kit/core: DnD Kit core library
@@ -171,7 +172,7 @@ To run a script, open a terminal and navigate to the project directory. Then run
 
 ## Dev Dependencies
 
-### This package has the following dev dependencies
+### This project has the following dev dependencies
 
 - @types/uuid: TypeScript definitions for UUID
 - autoprefixer: Autoprefixer postprocessor
