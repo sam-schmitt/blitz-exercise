@@ -66,7 +66,7 @@ I then positioned functional buttons where I thought they were best fitting and 
 
 In order to test UX, I needed more sets of eyes. I asked friends to take a look and only told them that this was a UI interface builder. They struggled a bit at first, which was expected, as this is a fast-built prototype but I was able to get more feedback that I could put back in the design.
 
-This feedback brought me to implement the drag and drop methods using dndkit and I made it so that the wire icon on the left side of each component is where you can initiate a drag action.
+This feedback brought me to implement the drag and drop methods using dnd-kit and I made it so that the wire icon on the left side of each component is where you can initiate a drag action.
 
 !['UI'](/assets/ui.png)
 
