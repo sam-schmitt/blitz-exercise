@@ -6,21 +6,21 @@ This is a Node.js package that contains the necessary dependencies and scripts t
 
 ## Screenshots
 
-!['Login Builder'](/assets/login-builder.png)
-
 _Login Form Being Built with Interface Builder_
 
-!['Login Preview'](/assets/login-preview.png)
+!['Login Builder'](/assets/login-builder.png)
 
 _Preview of Built Login Form_
 
-!['Login Referrer'](/assets/referrer.png)
+!['Login Preview'](/assets/login-preview.png)
 
 _Referrer Group Component_
 
-!['Login Referee'](/assets/referee.png)
+!['Login Referrer'](/assets/referrer.png)
 
 _Referee Group Component_
+
+!['Login Referee'](/assets/referee.png)
 
 ## Installation
 
