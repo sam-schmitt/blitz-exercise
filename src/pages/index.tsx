@@ -65,29 +65,26 @@ export default function Home(props: any) {
 					</p>
 					<p className='text-lg mt-2'>
 						By examining the console logs and carefully stepping through the
-						code, I was able to identify the issue and make the necessary fixes
-						to ensure that the tree was functioning correctly.{" "}
+						code, I was able to identify most of the issues and make some
+						necessary fixes.
 					</p>
 					<p className='text-lg mt-2'>
-						This process of testing and debugging was a valuable learning
-						experience, and I feel more confident in my ability to create
-						complex data structures in React moving forward. The{" "}
-						<code>`createReference`</code>
+						I learned a lot about state and how it can be managed through a
+						recursive tree. The <code>`createReference`</code>
 						function was the most interesting problem to solve.
 					</p>
 					<p className='text-xl mt-5'>What more would I do?</p>
 					<p className='text-lg mt-2'>
 						If I were to work on a tree data structure again in the future,
 						there are a few things that I would do differently to improve upon
-						it. First and foremost, I would focus on writing more comprehensive
-						test cases to cover a wider range of potential scenarios and edge
-						cases. This would allow me to catch any bugs or errors early on and
-						ensure that my implementation is robust and reliable.
+						it. I would try to write more comprehensive test cases to cover a
+						wider range of potential scenarios for the data. This would allow me
+						to catch any bugs or errors earlier on to save time.
 					</p>
 					<p className='text-lg mt-2'>
 						Additionally, I would make an effort to better organize my code and
 						make it more modular, so that it is easier to read, understand, and
-						maintain over time.{" "}
+						maintain over time.
 					</p>
 					<p className='text-lg mt-2'>
 						Finally, backend requests can help optimize the performance of the
