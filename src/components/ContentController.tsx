@@ -1,5 +1,5 @@
 import { Node } from "@/lib/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
 	GrAppsRounded,
 	GrCalendar,
@@ -69,7 +69,7 @@ export default function ContentController({
 				{
 					title: "Text Input",
 					description: "Add an input field to the mockup",
-					field: "input",
+					field: "text-input",
 					icon: <GrFormEdit />,
 					visible: true,
 				},
@@ -171,7 +171,7 @@ export default function ContentController({
 							</div>
 						) : (
 							<>
-								{selected === "input" && (
+								{selected === "text-input" && (
 									<TextInput
 										editContent={(content: any) => {
 											editContent(content);

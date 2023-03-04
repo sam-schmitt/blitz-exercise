@@ -22,6 +22,6 @@ export type TreeNodeProps = {
 	moveDown: any;
 	isRoot?: boolean;
 	addChildFromReference: any;
-
+	dragging: boolean;
 	ContentController?: boolean;
 };

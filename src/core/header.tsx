@@ -6,7 +6,6 @@ export default function Header({ selected }: any) {
 		{ title: "Home", page: "/" },
 		{ title: "Trees", page: "/trees" },
 		{ title: "Interface Builder", page: "/interface-builder" },
-		{ title: "READ ME", page: "/read-me" },
 	];
 	return (
 		<div className='bg-white rounded-md shadow-md m-3 p-3'>

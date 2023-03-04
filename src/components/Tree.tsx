@@ -4,6 +4,7 @@ import generateRandomId from "@/lib/helper/makeId";
 import { Node, TreeNodeProps } from "@/lib/types";
 import TreeNode from "./TreeNode";
 import PreviewTree from "./PreviewTree";
+import { DndContext } from "@dnd-kit/core";
 
 export default function Tree({ ContentController }: any) {
 	const [root, setRoot] = useState<Node>({
@@ -340,7 +341,7 @@ export default function Tree({ ContentController }: any) {
 						const newChild = {
 							id: generateRandomId(10),
 							name: `Child ${parentNode.children.length + 1}`,
-							children: [],
+							children: reference.children,
 							content: reference.content,
 							reference: reference.id, // add a reference to the parent node
 						};
@@ -357,41 +358,124 @@ export default function Tree({ ContentController }: any) {
 			return updatedRoot;
 		});
 	}
+
+	function moveNode(myId: string, otherId: string, type: "up" | "down") {
+		setRoot((prevRoot) => {
+			const updatedRoot = { ...prevRoot };
+			const myNode = findNode(updatedRoot, myId);
+			const otherNode = findNode(updatedRoot, otherId);
+			if (!myNode || !otherNode) {
+				return updatedRoot;
+			}
+			const myParent = findParentNode2(updatedRoot, myId);
+			const otherParent = findParentNode2(updatedRoot, otherId);
+			if (!myParent || !otherParent) {
+				return updatedRoot;
+			}
+			if (myParent.id !== otherParent.id) {
+				// if nodes don't have the same parent, use the original logic
+				const myIndex = myParent.children.indexOf(myNode);
+				myParent.children.splice(myIndex, 1);
+				const otherIndex = otherParent.children.indexOf(otherNode);
+				otherParent.children.splice(
+					type === "up" ? otherIndex : otherIndex + 1,
+					0,
+					myNode
+				);
+			} else {
+				// if nodes have the same parent, move myNode above or below otherNode
+				const myIndex = myParent.children.indexOf(myNode);
+				myParent.children.splice(myIndex, 1);
+				const otherIndex = myParent.children.indexOf(otherNode);
+				const newIndex = type === "up" ? otherIndex : otherIndex + 1;
+				myParent.children.splice(newIndex, 0, myNode);
+			}
+			return updatedRoot;
+		});
+	}
+
+	function findNode(node: any, id: string): any {
+		if (node.id === id) {
+			return node;
+		}
+		for (const child of node.children || []) {
+			const found = findNode(child, id);
+			if (found) {
+				return found;
+			}
+		}
+		return null;
+	}
+
+	function findParentNode2(node: any, id: string, parent: any = null): any {
+		if (node.id === id) {
+			return parent;
+		}
+		for (const child of node.children || []) {
+			const found = findParentNode2(child, id, node);
+			if (found) {
+				return found;
+			}
+		}
+		return null;
+	}
+	const [dragging, setDragging] = useState(false);
+
+	function onDragEndHandler(e: any) {
+		if (e.collisions.length > 0) {
+			const myId = e.active.id;
+			const otherId = e.collisions[0].id;
+			const type = e.collisions[0].data.droppableContainer.data.current.type;
+			console.log({ myId, otherId, type });
+			moveNode(myId, otherId, type);
+		}
+
+		setDragging(false);
+	}
+
 	return (
-		<div className='bg-white rounded-md shadow-lg m-3 p-3'>
-			{/* <h1 className='text-3xl font-bold'>Tree Example</h1> */}
-			<button
-				className='text-white bg-slate-500 p-2 rounded-lg m-1'
-				onClick={() => console.log({ root })}
-			>
-				Log Tree
-			</button>
-			<button
-				className='text-white bg-slate-500 p-2 rounded-lg m-1'
-				onClick={() => setPreviewing(!previewing)}
-			>
-				Toggle Preview
-			</button>
-			{!previewing ? (
-				<TreeNode
-					node={root}
-					index={0}
-					addChild={addChild}
-					deleteSelf={deleteSelf}
-					moveToGrandparent={moveToGrandparent}
-					moveAllChildrenToParent={moveAllChildrenToParent}
-					deleteAllChildren={deleteAllChildren}
-					moveToRoot={moveToRoot}
-					editContent={editContent}
-					moveUp={moveUp}
-					moveDown={moveDown}
-					addChildFromReference={addChildFromReference}
-					ContentController={ContentController}
-					isRoot={true}
-				/>
-			) : (
+		<div className='bg-white rounded-md shadow-lg m-3 p-3 flex overflow-y-visible h-full'>
+			<div className='w-2/3 overflow-y-scroll pr-2'>
+				<DndContext
+					onDragEnd={onDragEndHandler}
+					onDragStart={(e: any) => {
+						setDragging(true);
+					}}
+				>
+					{/* <button
+						className='text-white bg-slate-500 p-2 rounded-lg m-1'
+						onClick={() => console.log({ root })}
+					>
+						Log Tree
+					</button>
+					<button
+						className='text-white bg-slate-500 p-2 rounded-lg m-1'
+						onClick={() => setPreviewing(!previewing)}
+					>
+						Toggle Preview
+					</button> */}
+					<TreeNode
+						node={root}
+						index={0}
+						addChild={addChild}
+						deleteSelf={deleteSelf}
+						moveToGrandparent={moveToGrandparent}
+						moveAllChildrenToParent={moveAllChildrenToParent}
+						deleteAllChildren={deleteAllChildren}
+						moveToRoot={moveToRoot}
+						editContent={editContent}
+						moveUp={moveUp}
+						moveDown={moveDown}
+						addChildFromReference={addChildFromReference}
+						ContentController={ContentController}
+						isRoot={true}
+						dragging={dragging}
+					/>
+				</DndContext>
+			</div>
+			<div className='w-1/3 overflow-y-scroll pl-2'>
 				<PreviewTree root={root} />
-			)}
+			</div>
 		</div>
 	);
 }
