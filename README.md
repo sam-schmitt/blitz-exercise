@@ -4,6 +4,20 @@ This is a Node.js package that contains the necessary dependencies and scripts t
 
 ## [Demo](https://youtube.com/watch?v=9MaZ0NR4_QM&feature=shares)
 
+!['Login Builder'](/assets/login-builder.png)
+_Login Form Being Built with Interface Builder_
+
+!['Login Preview'](/assets/login-preview.png)
+_Preview of Built Login Form_
+
+!['Login Referrer'](/assets/referrer.png)
+_Referrer Group Component_
+
+!['Login Referee'](/assets/referee.png)
+_Referee Group Component_
+
+### Screenshots
+
 ## Installation
 
 #### To install this package, please follow these steps:
@@ -27,29 +41,29 @@ To run a script, open a terminal and navigate to the project directory. Then run
 
 #### This package has the following dependencies:
 
-@blitznocode/blitz-orm: Blitz ORM
-@dnd-kit/core: DnD Kit core library
-@dnd-kit/sortable: DnD Kit sortable library
-@dnd-kit/utilities: DnD Kit utilities library
-@types/node: TypeScript definitions for Node.js
-@types/react: TypeScript definitions for React
-@types/react-dom: TypeScript definitions for React DOM
-fs: Node.js file system module
-net: Node.js networking module
-next: Next.js framework
-react: React library
-react-dom: React DOM library
-react-icons: React icons library
-tls: Node.js TLS/SSL module
-typedb-client: TypeDB client library
-typescript: TypeScript language
-uuid: UUID library
+- @blitznocode/blitz-orm: Blitz ORM
+- @dnd-kit/core: DnD Kit core library
+- @dnd-kit/sortable: DnD Kit sortable library
+- @dnd-kit/utilities: DnD Kit utilities library
+- @types/node: TypeScript definitions for Node.js
+- @types/react: TypeScript definitions for React
+- @types/react-dom: TypeScript definitions for React DOM
+- fs: Node.js file system module
+- net: Node.js networking module
+- next: Next.js framework
+- react: React library
+- react-dom: React DOM library
+- react-icons: React icons library
+- tls: Node.js TLS/SSL module
+- typedb-client: TypeDB client library
+- typescript: TypeScript language
+- uuid: UUID library
 
 ## Dev Dependencies
 
 #### This package has the following dev dependencies:
 
-@types/uuid: TypeScript definitions for UUID
-autoprefixer: Autoprefixer postprocessor
-postcss: PostCSS library
-tailwindcss: Tailwind CSS library
+- @types/uuid: TypeScript definitions for UUID
+- autoprefixer: Autoprefixer postprocessor
+- postcss: PostCSS library
+- tailwindcss: Tailwind CSS library

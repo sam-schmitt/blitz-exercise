@@ -19,6 +19,27 @@ export const id: DataField = {
 	rights: ["CREATE"],
 };
 
+export const label: DataField = {
+	shared: true,
+	path: "name",
+	cardinality: "ONE",
+	contentType: "TEXT",
+};
+
+export const placeholder: DataField = {
+	shared: true,
+	path: "name",
+	cardinality: "ONE",
+	contentType: "TEXT",
+};
+
+export const contentType: DataField = {
+	shared: true,
+	path: "name",
+	cardinality: "ONE",
+	contentType: "TEXT",
+};
+
 export const schema: BormSchema = {
 	entities: {
 		Tree: {
@@ -27,17 +48,60 @@ export const schema: BormSchema = {
 			dataFields: [{ ...id }, { ...name, rights: ["CREATE", "UPDATE"] }],
 			linkFields: [
 				{
-					path: "parent-hoods",
+					path: "parenthoods",
 					relation: "parenthood",
 					cardinality: "MANY",
 					plays: "parent",
 					target: "relation",
 				},
 				{
-					path: "parent-hoods",
+					path: "references",
 					relation: "parenthood",
 					cardinality: "MANY",
+					plays: "referer",
+					target: "relation",
+				},
+				{
+					path: "childhoods",
+					relation: "parenthood",
+					cardinality: "ONE",
 					plays: "child",
+					target: "relation",
+				},
+				{
+					path: "referring",
+					relation: "reference",
+					cardinality: "ONE",
+					plays: "referee",
+					target: "relation",
+				},
+				{
+					path: "content",
+					relation: "tree-content",
+					cardinality: "ONE",
+					plays: "tree-owner",
+					target: "relation",
+				},
+			],
+		},
+		Content: {
+			idFields: ["id"],
+			defaultDBConnector: { id: "default" }, // in the future multiple can be specified in the config file. Either they fetch full schemas or they will require a relation to merge attributes from different databases
+			dataFields: [
+				{ ...id },
+				{
+					...label,
+					...placeholder,
+					...contentType,
+					rights: ["CREATE", "UPDATE"],
+				},
+			],
+			linkFields: [
+				{
+					path: "tree-contents",
+					relation: "tree-content",
+					cardinality: "ONE",
+					plays: "content",
 					target: "relation",
 				},
 			],
@@ -58,16 +122,30 @@ export const schema: BormSchema = {
 				},
 			},
 		},
-		childhood: {
+		reference: {
 			idFields: ["id"],
-			defaultDBConnector: { id: "default", path: "childhood" },
+			defaultDBConnector: { id: "default", path: "reference" },
 			// defaultDBConnector: { id: 'tdb', path: 'User·Account' }, //todo: when Dbpath != relation name
 			dataFields: [{ ...id }],
 			roles: {
-				parent: {
+				referer: {
 					cardinality: "ONE",
 				},
-				child: {
+				referee: {
+					cardinality: "ONE",
+				},
+			},
+		},
+		treeContent: {
+			idFields: ["id"],
+			defaultDBConnector: { id: "default", path: "tree-content" },
+			// defaultDBConnector: { id: 'tdb', path: 'User·Account' }, //todo: when Dbpath != relation name
+			dataFields: [{ ...id }],
+			roles: {
+				treeOwner: {
+					cardinality: "ONE",
+				},
+				content: {
 					cardinality: "ONE",
 				},
 			},

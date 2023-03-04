@@ -151,11 +151,85 @@ export default function Home(props: any) {
 					<p className='text-lg mt-2'>
 						But some things I would add are flex alignment on all components to
 						have a friendly layout customization interface in the group and page
-						section-types.
+						section-types. I would also add robust color customization so that
+						builders could create really vivid themes that fit right with their
+						app.
 					</p>
 					<p className='text-lg mt-2'>
-						I would also add robust color customization so that builders could
-						create really vivid themes that fit right with their app.
+						There are also a ton of edge cases unaccounted for in functionality.
+						For example, if a tree moves all the way down to being the last
+						child, it should then automatically move out of the tree it's in and
+						maybe into the next one.
+					</p>
+					<p className='text-2xl font-bold mt-7'>The TypeDB Backend</p>
+					<p className='text-xl mt-5'>Learning TypeDB</p>
+					<p className='text-lg mt-2'>
+						I've never used TypeDB before but that didn't stop me from reading
+						into it. I was impressed by its marketing use-cases and saw why it
+						would be a good fit for an exercise like this. I started to play
+						with TypeDB studio to get a better grasp on how the data could be
+						related.
+					</p>
+					<p className='text-lg mt-2'>
+						I then proceeded to sketch out the schema based on the JSON that my
+						root state outputted from the client. I knew that linking to a DB
+						would increase performance of the tree significantly, as you
+						wouldn't need the entire state of the tree to exist on the client,
+						only the visible nodes. So I designed the schema so that you would
+						only ever need to make requests to smaller pieces of the root tree,
+						and you could request the full tree as you went and expanded.
+					</p>
+					<p className='text-xl mt-5'>Trying Blitz Orm</p>
+					<p className='text-lg mt-2'>
+						I'm not going to lie, trying out Blitz Orm was a bit difficult but I
+						could see the potential of the new package. Since it is in an early
+						stage, I still made a good attempt to try and get it functional,
+						however, I did experience some compatibility issues with other
+						packages and decided to focus on other aspects of the assignment to
+						better dedicate my time.
+					</p>
+					<p className='text-lg mt-2'>
+						I would be very interested in taking a peak into a backend that is
+						already using Blitz Orm to its fullest capabilities, so that I could
+						see how well it can fit into a stack.
+					</p>
+					<p className='text-xl mt-5'>What more would I do?</p>
+					<p className='text-lg mt-2'>
+						I definitely want to do more research on TypeDB and TQL to just
+						satisfy my curiosity, it seems like a very neat DB solution. As for
+						Blitz Orm, it would make the best sense to learn from the developer
+						how it should be applied best, if I'd be given the opportunity to do
+						so.
+					</p>
+					<p className='text-lg mt-2'>
+						As state in the assignment details, it is difficult to link JSON to
+						TypeDB, so I would try different formatting on the client to better
+						fit with TQL.
+					</p>
+					<p className='text-2xl font-bold mt-7'>Final Thoughts</p>
+					<p className='text-lg mt-2'>
+						As stated in my brief application (prior to this exercise), I am
+						very interested in building no-code solutions as I've been a part of
+						an entrepreneurial community that has always waited for the day that
+						we could build out all of our ideas without needing to focus on so
+						much code work.
+					</p>
+					<p className='text-lg mt-2'>
+						This exercise was a lot of fun for me, and I would love to continue
+						to work on this problem alongside a strong team of developers,
+						bringing in a polished UX and backend that could serve a
+						distinguished no-code solution to many developers.
+					</p>
+					<p className='text-lg mt-2'>
+						Feel free after assessing this submission to check out my{" "}
+						<a
+							target={"_blank"}
+							style={{ color: "blue" }}
+							href='https://samschmitt.net'
+						>
+							portfolio
+						</a>
+						.
 					</p>
 				</div>
 			</main>

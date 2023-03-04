@@ -7,7 +7,7 @@ define
         value string;
     placeholder sub attribute,
         value string;
-    content-type sub attribute,
+    contentType sub attribute,
         value string;
         
     parenthood sub relation,
@@ -18,14 +18,14 @@ define
         relates referer,
         relates referee;
         
-    tree-content sub relation,
-        relates tree-owner,
+    treeContent sub relation,
+        relates treeOwner,
         relates content;   
         
     content sub entity,
         owns label,
         owns placeholder,
-        owns content-type;
+        owns contentType;
 
         
     tree sub entity,
