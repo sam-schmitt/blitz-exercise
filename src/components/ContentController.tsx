@@ -128,7 +128,7 @@ export default function ContentController({
 			</div>
 			<div>
 				{editingContent === true && (
-					<div className='shadow-md rounded-md mt-5 p-5'>
+					<div className=' mt-5 p-5'>
 						{pickingType ? (
 							<div>
 								<p className='text-center text-lg'>Choose a Type</p>

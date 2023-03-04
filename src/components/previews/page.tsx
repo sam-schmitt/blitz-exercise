@@ -1,9 +1,8 @@
 export default function Page({ content }: any) {
 	return (
-		<div>
-			<p className='text-lg font-semibold text-center underline'>
-				{content.label}
-			</p>
+		<div className='flex flex-col '>
+			<i>Page: </i>
+			<p className='text-lg font-semibold underline'>{content.label}</p>
 		</div>
 	);
 }

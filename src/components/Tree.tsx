@@ -334,24 +334,24 @@ export default function Tree({ ContentController }: any) {
 		setRoot((prevRoot) => {
 			const updatedRoot = { ...prevRoot };
 			const findAndAddChild = (parentNode: Node): boolean => {
-				if (parentNode.id === reference.id) {
-					// add child to parent node
-					parentNode.children.push({
-						id: generateRandomId(10),
-						name: `Child ${parentNode.children.length + 1}`,
-						children: [],
-						content: parentNode.content,
-						reference: reference.id, // add a reference to the parent node
-					});
-					return true;
-				} else {
-					for (let child of parentNode.children) {
-						if (findAndAddChild(child)) {
-							return true;
-						}
+				for (let child of parentNode.children) {
+					if (child.id === reference.id) {
+						// add child to parent node
+						const newChild = {
+							id: generateRandomId(10),
+							name: `Child ${parentNode.children.length + 1}`,
+							children: [],
+							content: reference.content,
+							reference: reference.id, // add a reference to the parent node
+						};
+						parentNode.children.push(newChild);
+						assignNewIds([newChild]);
+						return true;
+					} else if (findAndAddChild(child)) {
+						return true;
 					}
-					return false;
 				}
+				return false;
 			};
 			findAndAddChild(updatedRoot);
 			return updatedRoot;

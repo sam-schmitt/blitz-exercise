@@ -63,20 +63,9 @@ export default function TreeNode({
 			icon: <GrHome className='mr-2' />,
 			visible: true,
 		},
+
 		{
-			title: "Move Up",
-			onClick: () => moveUp(node),
-			icon: <GrCaretUp className='mr-2' />,
-			visible: true,
-		},
-		{
-			title: "Move Down",
-			onClick: () => moveDown(node),
-			icon: <GrCaretDown className='mr-2' />,
-			visible: true,
-		},
-		{
-			title: "Add Child From Reference",
+			title: "Create Copy from Reference",
 			onClick: () =>
 				addChildFromReference(node, {
 					type: "empty",
@@ -89,11 +78,11 @@ export default function TreeNode({
 		node.content.type === "empty"
 	);
 	return (
-		<div className='bg-white rounded-md shadow-md m-5 p-2'>
+		<div className='bg-white rounded-md shadow-md m-5 p-2 flex flex-row '>
 			{/* content */}
-			<div>
+			<div className='w-full'>
 				{/* header */}
-				<div className='flex flex-row justify-between'>
+				<div className='flex flex-row justify-between '>
 					<div>
 						<p className='mr-2 text-sm font-extralight'>ID: {node.id}</p>
 						{node.reference && (
@@ -121,19 +110,21 @@ export default function TreeNode({
 						node={node}
 						editingContent={editingContent}
 						setEditingContent={setEditingContent}
-						canPage={index <= 1}
+						canPage={index >= 1}
 					/>
 				)}
 				{!editingContent && (
 					<>
-						<button
-							onClick={() => {
-								setEditingContent(true);
-							}}
-							className='border-2 border-gray-200 bg-white text-gray-700 hover:border-slate-500 hover:bg-slate-500 hover:text-white px-4 py-2 rounded-md flex items-center justify-start space-x-2 text-xs'
-						>
-							Edit
-						</button>
+						<div className='flex flex-row justify-end'>
+							<button
+								onClick={() => {
+									setEditingContent(true);
+								}}
+								className='border-2 border-gray-200 bg-white text-gray-700 hover:border-slate-500 hover:bg-slate-500 hover:text-white px-4 py-2 rounded-md flex items-center justify-start space-x-2 text-xs'
+							>
+								Edit
+							</button>
+						</div>
 						<PreviewController content={node.content} />
 					</>
 				)}
@@ -211,6 +202,16 @@ export default function TreeNode({
 					)}
 				</div>
 			</div>
+			{!node.isRoot && (
+				<div className='flex flex-col justify-center'>
+					<button onClick={() => moveUp(node)}>
+						<GrCaretUp />
+					</button>
+					<button onClick={() => moveDown(node)}>
+						<GrCaretDown />
+					</button>
+				</div>
+			)}
 		</div>
 	);
 }
