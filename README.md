@@ -2,11 +2,11 @@
 
 This README contains:
 
-1. A link to a [demo](https://youtube.com/watch?v=9MaZ0NR4_QM&feature=shares)
+1. A link to a [demo video](https://youtube.com/watch?v=9MaZ0NR4_QM&feature=shares)
 2. My [notes](/README.md#my-notes) on my experience
 3. Instructions on [installation](/README.md#installation)
 
-## [Demo](https://youtube.com/watch?v=9MaZ0NR4_QM&feature=shares)
+## [Demo Video](https://youtube.com/watch?v=9MaZ0NR4_QM&feature=shares)
 
 ## My Notes
 
