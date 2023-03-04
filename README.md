@@ -4,6 +4,8 @@ This is a Node.js package that contains the necessary dependencies and scripts t
 
 ## [Demo](https://youtube.com/watch?v=9MaZ0NR4_QM&feature=shares)
 
+## Screenshots
+
 !['Login Builder'](/assets/login-builder.png)
 
 _Login Form Being Built with Interface Builder_
@@ -19,8 +21,6 @@ _Referrer Group Component_
 !['Login Referee'](/assets/referee.png)
 
 _Referee Group Component_
-
-### Screenshots
 
 ## Installation
 
