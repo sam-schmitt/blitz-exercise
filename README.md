@@ -130,7 +130,7 @@ As state in the assignment details, it is difficult to link JSON to **TypeDB**, 
 
 As stated in my brief application (prior to this exercise), **I am very interested in building no-code solutions** as I've been a part of an entrepreneurial community that has always waited for the day that we could build out all of our ideas without needing to focus on so much code work.
 
-This exercise was a _lot_ of fun for me, and I would love to continue to work on this problem alongside a strong team of developers, bringing in a polished UX and backend that could serve a distinguished no-code solution to many developers.
+> > This exercise was a lot of fun for me, and I would love to continue to work on this problem alongside a strong team of developers, bringing in a polished UX and backend that could serve a distinguished no-code solution to many developers.
 
 Feel free, after assessing this submission, to check out my [portfolio](https://samschmitt.net).
 
