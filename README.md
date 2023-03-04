@@ -70,11 +70,19 @@ I decided that in order to simplify the UX of the site, I would have to relay to
 
 I separated the types into 3 sections: sections, text, and components. These are common ways of referring to types of building blocks for an application.
 
+!['Types'](/assets/types.png)
+
 I then positioned functional buttons where I though they were best fitting and began to test the UX.
 
 #### Testing the Builder
 
-In order to test UX, I needed more sets of eyes. I asked friends to take a look and only told them that this was a UI interface builder. They struggled a bit at first, which was expected, as this is a fast-built prototype but I was able to get more feedback that I could put bag in the design.
+In order to test UX, I needed more sets of eyes. I asked friends to take a look and only told them that this was a UI interface builder. They struggled a bit at first, which was expected, as this is a fast-built prototype but I was able to get more feedback that I could put back in the design.
+
+This feedback brought me to implement the drag and drop methods using dndkit and I made it so that the wire icon on the left side of each component is where you can initiate a drag action.
+
+!['UI'](/assets/ui.png)
+
+!['Options'](/assets/options.png)
 
 There are still a few bugs to work through, but nothing a few more casual days of debugging wouldn't fix.
 
