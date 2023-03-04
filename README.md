@@ -22,9 +22,7 @@ _A screenshot of a tree with multiple nested children_
 
 !['Tree'](/assets/tree.png)
 
-Creating the tree was a bit complicated at first, as I wanted to use a single state variable to control the state of the entire tree, beginning with a root.
-
-Once I began the `addChild` function, then I began to figure out how I was going to relate each node and pursue most of the movement functions.
+Creating the tree was a bit complicated at first, as I wanted to use a single state variable to control the state of the entire tree, beginning with a root. Once I began the `addChild` function, then I began to figure out how I was going to relate each node and pursue most of the movement functions.
 
 #### Testing the Tree
 
@@ -32,9 +30,7 @@ As I was coding the tree in React, I decided to test it using both the console a
 
 From there, I used the UI to visualize the tree and identify any issues that needed fixing. As I interacted with the tree in the UI, I noticed that some of the nodes were not behaving as expected.
 
-By examining the console logs and carefully stepping through the code, I was able to identify most of the issues and make some necessary fixes.
-
-I learned a lot about state and how it can be managed through a recursive tree. The `createReference` function was the most interesting problem to solve.
+By examining the console logs and carefully stepping through the code, I was able to identify most of the issues and make some necessary fixes. I learned a lot about state and how it can be managed through a recursive tree. The `createReference` function was the most interesting problem to solve.
 
 _Referrer Group Component_
 
@@ -60,13 +56,11 @@ After creating the tree, I knew I needed to reuse the standard tree component in
 
 From reading more about what the assignment was asking, I started to understand the purpose of the B1, B2, R1, R2, and R3 data types. It certainly is a unique way of classifying these kinds of components.
 
-I decided that in order to simplify the UX of the site, I would have to relay to the user an easier way of understanding what the types meant.
-
-I separated the types into 3 sections: sections, text, and components. These are common ways of referring to types of building blocks for an application.
+I decided that in order to simplify the UX of the site, I would have to relay to the user an easier way of understanding what the types meant. I separated the types into 3 groups: _sections, text, and components_. These are more common ways of referring to types of building blocks for an application.
 
 !['Types'](/assets/types.png)
 
-I then positioned functional buttons where I though they were best fitting and began to test the UX.
+I then positioned functional buttons where I thought they were best fitting and began to test the UX.
 
 ### Testing the Builder
 
