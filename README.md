@@ -98,7 +98,7 @@ In terms of UX there are a ton of edge cases unaccounted for in functionality. F
 
 ### Learning TypeDB
 
-I've never used **TypeDB** before but that didn't stop me from reading into it. I was impressed by its use-cases and saw why it would be a good fit for an exercise like this. I started to play with **TypeDB studio** to get a better grasp on how the data could be related. Then, I wrote out and defined the schema for the Tree and it includes:
+I've never used **TypeDB** before but that didn't stop me from reading into it. I was impressed by its use-cases and saw why it would be a good fit for an exercise like this. I started to play with **TypeDB studio** to get a better grasp on how the data could be related. Then, I wrote out and defined the [schema](/src/typedb/tql/schema.tql) for the Tree and it includes:
 
 - Attributes to be owned by entities and relations
 - Entities for the tree node and content
@@ -106,7 +106,7 @@ I've never used **TypeDB** before but that didn't stop me from reading into it. 
 - Relations between reference nodes and their referrer
 - Relations between nodes and their content
 
-I did make changes to the **suggested Data Model** in the assignment and this is because of the JSON that was outputted by the client. I wanted to create the data model with **as few entities as possible** and I was able to break it down to just two. _Content_ and _Node_ are the two entities and they can encompass all of the functionality set out in this assignment just as they worked in the client. Nodes encompass _frames, layouts, elements, and components,_.Content is what distinguishes each node from each other based on the `content.type` field
+I did make changes to the **suggested Data Model** in the assignment and this is because of the JSON that was outputted by the client. I wanted to create the data model with **as few entities as possible** in order to simplify and increase the backend's efficiency. _Content_ and _Node_ are the two entities and they can encompass all of the functionality set out in this assignment just as they worked in the client. Nodes encompass _frames, layouts, elements, and components_. Content is what distinguishes each node from each other based on the `content.type` field
 
 I then proceeded to sketch out the schema based on the JSON that my root state outputted from the client. I knew that linking to a DB would increase performance of the tree significantly, as you wouldn't need the entire state of the tree to exist on the client, only the visible nodes. So I designed the [schema](/src/typedb/tql/schema.tql) so that you would only ever need to make requests to smaller pieces of the root tree, and you could request the full tree as you went on and expanded.
 
