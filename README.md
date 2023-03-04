@@ -30,7 +30,7 @@ As I was coding the tree in React, I decided to test it using both the console a
 
 From there, I used the UI to visualize the tree and identify any issues that needed fixing. As I interacted with the tree in the UI, I noticed that some of the nodes were not behaving as expected.
 
-By examining the console logs and carefully stepping through the code, I was able to identify most of the issues and make some necessary fixes. I learned a lot about state and how it can be managed through a recursive tree. The `createReference` function was the most interesting problem to solve.
+By examining the console logs and carefully stepping through the code, I was able to identify most of the issues and make some necessary fixes. I learned a lot about state and how it can be managed through a recursive tree. The `createReference` function was the most interesting problem to solve. For referred components, _any_ changes made to the referrer get applied to the referee including when you add or edit children, or edit any individual components.
 
 _Referrer Group Component_
 
