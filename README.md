@@ -16,7 +16,7 @@ This README contains:
 
 My [tree](/src/components/Tree.tsx) component has [nodes](/src/components/TreeNode.tsx) that are connected to each other in a parent-child relationship. The tree is represented as a nested data structure, where each node is an object with an id, name, content, and children. The `root` object represents the top-level node of the tree, and it can have any number of child nodes.
 
-The tree supports several operations, as they were specified in the assignment: like adding a new child node to a selected parent node, editing a node's content, and deleting a node. I used the `useState()` hook to manage state and render updates. The code uses recursion to traverse the tree to find the selected node and to update the children's content when a parent node is deleted or when new children are added to a node. This tree data structure is used to represent hierarchical data structures like file systems, organization charts, and family trees, and the **interface builder**.
+The tree supports several operations, as they were specified in the assignment: like adding a new child node to a selected parent node, editing a node's content, and deleting a node. I used the `useState()` hook to manage state and render updates. The code uses recursion to traverse the tree to find the selected node and to update the children's content or when new children are added to a node. This tree data structure is used to represent hierarchical data structures like file systems, organization charts, and family trees, and the **interface builder**.
 
 _A screenshot of a tree with multiple nested children_
 
