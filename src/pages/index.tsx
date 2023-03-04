@@ -17,31 +17,29 @@ export default function Home(props: any) {
 			<main className=''>
 				<Header selected={"/"} />
 				<div className='w-3/6 mx-auto mb-10'>
-					<p className='text-3xl font-bold text-center mt-10'>
-						Sam Schmitt's Blitz Interface Builder Tree
-					</p>
 					<p className='text-center'>
 						<i>My Experience</i>
 					</p>
 					<p className='text-2xl font-bold mt-7'>The Tree</p>
 					<p className='text-xl mt-5'>Creating the Tree</p>
 					<p className='text-lg mt-2'>
-						I created a React component for a tree data structure that has nodes
-						that are connected to each other in a <i>parent-child</i>{" "}
-						relationship. The tree is represented as a nested data structure,
-						where each node is an object with an id, name, content, and
-						children. The <b>'root'</b> object represents the top-level node of
-						the tree, and it can have any number of child nodes.
+						My tree component has nodes that are connected to each other in a{" "}
+						<i>parent-child</i> relationship. The tree is represented as a
+						nested data structure, where each node is an object with an id,
+						name, content, and children. The <b>'root'</b> object represents the
+						top-level node of the tree, and it can have any number of child
+						nodes.
 					</p>
 					<p className='text-lg mt-2'>
-						The tree supports several operations like adding a new child node to
-						a selected parent node, editing a node's content, and deleting a
-						node. I used the <code>`useState hook'</code> to manage state and
-						render updates. The code uses recursion to traverse the tree to find
-						the selected node and to update the children's content when a parent
-						node is deleted or when new children are added to a node. This tree
-						data structure is used to represent hierarchical data structures
-						like file systems, organization charts, and family trees, and the{" "}
+						The tree supports several operations, as they were specified in the
+						assignment: like adding a new child node to a selected parent node,
+						editing a node's content, and deleting a node. I used the{" "}
+						<code>`useState'</code>hook to manage state and render updates. The
+						code uses recursion to traverse the tree to find the selected node
+						and to update the children's content when a parent node is deleted
+						or when new children are added to a node. This tree data structure
+						is used to represent hierarchical data structures like file systems,
+						organization charts, and family trees, and the{" "}
 						<b>interface builder</b>.
 					</p>
 					<p className='text-lg mt-2'>
